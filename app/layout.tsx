@@ -1,6 +1,8 @@
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
-import Header from "@/components/Header"
+import { ConditionalHeader } from "@/components/ConditionalHeader"
+import { ConditionalFooter } from "@/components/ConditionalFooter"
+import { Toaster } from "sonner"
 import "./globals.css"
 import Script from "next/script"
 
@@ -85,8 +87,10 @@ export default function RootLayout({
       </head>
       <body className={`${inter.variable} font-sans antialiased`}>
         <div id="top" />
-        <Header />
+        <ConditionalHeader />
         {children}
+        <ConditionalFooter />
+        <Toaster richColors position="top-right" closeButton />
       </body>
     </html>
   )

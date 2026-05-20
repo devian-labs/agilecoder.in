@@ -1,0 +1,109 @@
+# Decap CMS Configuration
+# Docs: https://decapcms.org/docs/
+
+backend:
+  name: github
+  repo: devian-labs/agilecoder.in
+  branch: main
+  auth_type: pkce
+  app_id: Ov23liAGdguWE56tSmPj
+
+media_folder: "public/assets"
+public_folder: "/assets"
+
+# Editor preview disabled (static rendering handles styling)
+editor:
+  preview: false
+
+collections:
+  # ─── Blog Posts ───────────────────────────────────────────────────────────────
+  - name: "posts"
+    label: "Blog Posts"
+    folder: "content/posts"
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    extension: "mdx"
+    format: "frontmatter"
+    summary: "{{title}}"
+    summary_fields: ["coverImage", "title", "date"]
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Publish Date", name: "date", widget: "datetime", format: "YYYY-MM-DD" }
+      - { label: "Author", name: "author", widget: "string", default: "AgileCoder" }
+      - { label: "Excerpt", name: "excerpt", widget: "text", required: false }
+      - label: "Category"
+        name: "category"
+        widget: "select"
+        options:
+          - { label: "Web Development", value: "web-dev" }
+          - { label: "Backend & APIs", value: "backend" }
+          - { label: "DevOps & Cloud", value: "devops" }
+          - { label: "System Design", value: "architecture" }
+          - { label: "Creative Coding", value: "creative-coding" }
+          - { label: "Career & Productivity", value: "career" }
+          - { label: "Tools & Libraries", value: "tools" }
+          - { label: "AI & ML", value: "ai" }
+        required: false
+      - label: "Tags"
+        name: "tags"
+        widget: "list"
+        required: false
+        field: { label: "Tag", name: "tag", widget: "string" }
+      - { label: "Cover Image", name: "coverImage", widget: "image", required: false }
+      - { label: "Reading Time (minutes)", name: "readingTime", widget: "number", required: false }
+      - label: "Learning Path"
+        name: "learningPath"
+        widget: "string"
+        required: false
+        hint: "Slug of the learning path this post belongs to (e.g. react-fundamentals)"
+      - label: "Learning Path Order"
+        name: "learningPathOrder"
+        widget: "number"
+        required: false
+        hint: "Position of this post within the learning path (1-based)"
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  # ─── Topic Pages ──────────────────────────────────────────────────────────────
+  - name: "pages"
+    label: "Blog Topic Pages"
+    folder: "content/pages"
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    extension: "md"
+    format: "frontmatter"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Cover Image", name: "coverImage", widget: "image", required: false }
+      - label: "Featured Posts"
+        name: "featuredPosts"
+        widget: "list"
+        required: false
+        field: { label: "Post Slug", name: "slug", widget: "string" }
+      - label: "Featured Threads"
+        name: "featuredThreads"
+        widget: "list"
+        required: false
+        field: { label: "Thread Slug", name: "slug", widget: "string" }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  # ─── Threads / Series ─────────────────────────────────────────────────────────
+  - name: "threads"
+    label: "Blog Series (Threads)"
+    folder: "content/threads"
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    extension: "md"
+    format: "frontmatter"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Cover Image", name: "coverImage", widget: "image", required: false }
+      - label: "Posts (in order)"
+        name: "posts"
+        widget: "list"
+        field: { label: "Post Slug", name: "slug", widget: "string" }
+      - { label: "Introduction", name: "body", widget: "markdown" }

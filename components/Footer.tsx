@@ -1,205 +1,104 @@
 "use client"
-import { motion } from "framer-motion";
-import { Github, Linkedin, Mail, ArrowUp, Heart } from "lucide-react";
-import Link from "next/link";
+import Link from "next/link"
+import { Github, Mail, ExternalLink } from "lucide-react"
 
-export default function ImprovedFooter() {
-  const navLinks = [
-    { label: "Home", href: "/" },
-    { label: "Projects", href: "/#projects" },
-    { label: "Tech Blog", href: "/tech-blog" },
-    { label: "Books", href: "/books" },
-  ];
-
-  const socialLinks = [
-    {
-      icon: Github,
-      href: "https://github.com/Agile-Coder-Org",
-      label: "GitHub",
-    },
-    {
-      icon: Linkedin,
-      href: "https://www.linkedin.com/in/iamsmruti/",
-      label: "LinkedIn",
-    },
-    {
-      icon: Mail,
-      href: "mailto:agilecoder@outlook.in",
-      label: "Email",
-    },
-  ];
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
-  } as const;
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0
-    }
-  } as const;
-
+function YouTubeIcon({ className }: { className?: string }) {
   return (
-    <footer className="bg-background text-foreground pt-16 pb-8 relative border-t border-border">
-      <div className="container mx-auto px-4">
-        {/* Main Footer Content */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="grid md:grid-cols-4 gap-12 mb-12"
-        >
-          {/* Brand Section */}
-          <motion.div variants={itemVariants} transition={{ duration: 0.5 }}>
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+    </svg>
+  )
+}
+
+export default function Footer() {
+  return (
+    <footer className="bg-[#0a0a0f] text-white border-t border-zinc-800/60 pt-16 pb-8">
+      <div className="max-w-6xl mx-auto px-6">
+
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+
+          {/* Column 1 — Brand */}
+          <div className="md:col-span-1">
             <div className="flex items-center gap-3 mb-4">
-              <img
-                src="/agilecoder-dark.png"
-                alt="AgileCoder Logo"
-                className="w-10 h-10 rounded-full"
-              />
-              <h3 className="text-2xl font-bold">AgileCoder</h3>
+              <img src="/agilecoder-dark.png" alt="AgileCoder Logo" className="w-8 h-8 rounded-full" />
+              <span className="text-lg font-bold">AgileCoder</span>
             </div>
-            <p className="text-muted-foreground mb-6 leading-relaxed">
-              Innovate. Build. Deliver.
+            <p className="text-sm text-zinc-500 leading-relaxed mb-4">
+              Where Devian Labs shares what it learns.
             </p>
-            <p className="text-sm text-muted-foreground">
-              Building the future, one line of code at a time.
-            </p>
-          </motion.div>
+            <a href="https://devianlabs.com" target="_blank" rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-xs text-zinc-600 hover:text-zinc-300 transition-colors font-medium tracking-wide uppercase">
+              Visit Devian Labs <ExternalLink className="h-3 w-3" />
+            </a>
+          </div>
 
-          {/* Quick Links */}
-          <motion.div variants={itemVariants} transition={{ duration: 0.5 }}>
-            <h4 className="font-semibold mb-4 text-lg">Quick Links</h4>
+          {/* Column 2 — Learn */}
+          <div>
+            <h4 className="text-xs font-semibold uppercase tracking-widest text-zinc-500 mb-5">Learn</h4>
             <ul className="space-y-3">
-              {navLinks.map((link) => (
-                <li key={link.href}>
-                  <a
-                    href={link.href}
-                    className="text-muted-foreground hover:text-foreground transition-colors inline-flex items-center group"
-                  >
-                    <span className="group-hover:translate-x-1 transition-transform">
-                      {link.label}
-                    </span>
-                  </a>
-                </li>
-              ))}
+              <li>
+                <Link href="/blog" className="text-sm text-zinc-400 hover:text-white transition-colors">Blog</Link>
+              </li>
+              <li>
+                <a href="https://www.youtube.com/@AgileCoderYT" target="_blank" rel="noopener noreferrer"
+                  className="text-sm text-zinc-400 hover:text-white transition-colors">YouTube</a>
+              </li>
+              <li>
+                <Link href="#newsletter" className="text-sm text-zinc-400 hover:text-white transition-colors">Newsletter</Link>
+              </li>
             </ul>
-          </motion.div>
+          </div>
 
-          {/* Connect Section */}
-          <motion.div variants={itemVariants} transition={{ duration: 0.5 }}>
-            <h4 className="font-semibold mb-4 text-lg">Connect</h4>
-            <div className="flex gap-4 mb-6">
-              {socialLinks.map(({ icon: Icon, href, label }) => (
-                <motion.a
-                  key={label}
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={{ scale: 1.1, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="bg-secondary p-3 rounded-lg text-muted-foreground hover:text-foreground hover:bg-secondary/80 transition-all"
-                  aria-label={label}
-                >
-                  <Icon className="h-5 w-5" />
-                </motion.a>
-              ))}
-            </div>
-            <p className="text-sm text-muted-foreground">
-              Follow us for updates and insights
-            </p>
-          </motion.div>
+          {/* Column 3 — Store */}
+          <div>
+            <h4 className="text-xs font-semibold uppercase tracking-widest text-zinc-500 mb-5">Store</h4>
+            <ul className="space-y-3">
+              <li>
+                <Link href="/store" className="text-sm text-zinc-400 hover:text-white transition-colors">Books</Link>
+              </li>
+              <li>
+                <a href="https://devianlabs.gumroad.com" target="_blank" rel="noopener noreferrer"
+                  className="text-sm text-zinc-400 hover:text-white transition-colors">Boilerplates</a>
+              </li>
+            </ul>
+          </div>
 
-          {/* Contact Section */}
-          <motion.div variants={itemVariants} transition={{ duration: 0.5 }}>
-            <h4 className="font-semibold mb-4 text-lg">Get in Touch</h4>
-            <div className="space-y-3">
-              <a
-                href="mailto:support@agilecoder.in"
-                className="text-muted-foreground hover:text-foreground transition-colors block"
-              >
-                support@agilecoder.in
+          {/* Column 4 — Connect */}
+          <div>
+            <h4 className="text-xs font-semibold uppercase tracking-widest text-zinc-500 mb-5">Connect</h4>
+            <div className="flex gap-3 mb-4">
+              <a href="https://www.youtube.com/@AgileCoderYT" target="_blank" rel="noopener noreferrer"
+                aria-label="YouTube"
+                className="w-9 h-9 rounded-lg bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-400 hover:text-white hover:border-zinc-600 transition-all">
+                <YouTubeIcon className="h-4 w-4" />
               </a>
-              <a
-                href="mailto:agilecoder@outlook.in"
-                className="text-muted-foreground hover:text-foreground transition-colors block"
-              >
-                agilecoder@outlook.in
+              <a href="https://github.com/Agile-Coder-Org" target="_blank" rel="noopener noreferrer"
+                aria-label="GitHub"
+                className="w-9 h-9 rounded-lg bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-400 hover:text-white hover:border-zinc-600 transition-all">
+                <Github className="h-4 w-4" />
+              </a>
+              <a href="mailto:hello@devianlabs.com"
+                aria-label="Email"
+                className="w-9 h-9 rounded-lg bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-400 hover:text-white hover:border-zinc-600 transition-all">
+                <Mail className="h-4 w-4" />
               </a>
             </div>
-          </motion.div>
-        </motion.div>
+            <p className="text-xs text-zinc-600">hello@devianlabs.com</p>
+          </div>
 
-        {/* Divider */}
-        <div className="border-t border-border pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            {/* Copyright */}
-            <motion.p
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3 }}
-              className="text-muted-foreground text-sm text-center md:text-left"
-            >
-              &copy; {new Date().getFullYear()} AgileCoder. All rights reserved.
-            </motion.p>
+        </div>
 
-            {/* Made with love */}
-            <motion.p
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.4 }}
-              className="text-muted-foreground text-sm flex items-center gap-2"
-            >
-              Made with <Heart className="h-4 w-4 text-red-500 fill-red-500" /> by AgileCoder
-            </motion.p>
-
-            {/* Legal Links */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.5 }}
-              className="flex gap-6 text-sm"
-            >
-              <Link href="/privacy-policy" className="text-muted-foreground hover:text-foreground transition-colors">
-                Privacy Policy
-              </Link>
-              <Link href="/terms-of-service" className="text-muted-foreground hover:text-foreground transition-colors">
-                Terms of Service
-              </Link>
-            </motion.div>
+        {/* Bottom row */}
+        <div className="border-t border-zinc-800/60 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-zinc-600">
+          <p>© {new Date().getFullYear()} AgileCoder · A Devian Labs project</p>
+          <div className="flex gap-6">
+            <Link href="/privacy-policy" className="hover:text-zinc-400 transition-colors">Privacy</Link>
+            <Link href="/terms-of-service" className="hover:text-zinc-400 transition-colors">Terms</Link>
+            <Link href="/dashboard" className="hover:text-zinc-400 transition-colors opacity-40">Admin</Link>
           </div>
         </div>
-      </div>
 
-      {/* Scroll to Top Button */}
-      <motion.button
-        initial={{ opacity: 0, scale: 0 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        viewport={{ once: true }}
-        whileHover={{ scale: 1.1, y: -2 }}
-        whileTap={{ scale: 0.9 }}
-        onClick={scrollToTop}
-        className="fixed bottom-8 right-8 bg-primary text-primary-foreground p-3 rounded-full shadow-lg hover:shadow-xl transition-all z-50"
-        aria-label="Scroll to top"
-      >
-        <ArrowUp className="h-6 w-6" />
-      </motion.button>
+      </div>
     </footer>
-  );
+  )
 }

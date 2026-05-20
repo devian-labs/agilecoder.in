@@ -1,27 +1,33 @@
-import type { MetadataRoute } from "next";
-import { getAllPosts } from "@/utils/content";
+import type { MetadataRoute } from "next"
+import { getPublishedPosts } from "@/lib/firestore/posts-crud"
 
-const SITE_URL = "https://www.agilecoder.in";
+const SITE_URL = "https://www.agilecoder.in"
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const posts = getAllPosts() || [];
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  let posts: { slug: string; date?: string }[] = []
+  try {
+    posts = await getPublishedPosts()
+  } catch {
+    // Firestore unavailable at build time — skip post URLs
+  }
 
-  const pages = [
+  const pages: MetadataRoute.Sitemap = [
     { url: `${SITE_URL}/`, lastModified: new Date() },
-    { url: `${SITE_URL}/tech-blog`, lastModified: new Date() },
-    { url: `${SITE_URL}/books`, lastModified: new Date() },
-    { url: `${SITE_URL}/code-and-art`, lastModified: new Date() },
+    { url: `${SITE_URL}/blog`, lastModified: new Date() },
+    { url: `${SITE_URL}/store`, lastModified: new Date() },
+    { url: `${SITE_URL}/store/books`, lastModified: new Date() },
+    { url: `${SITE_URL}/courses`, lastModified: new Date() },
     { url: `${SITE_URL}/about`, lastModified: new Date() },
     { url: `${SITE_URL}/privacy-policy`, lastModified: new Date() },
     { url: `${SITE_URL}/terms-of-service`, lastModified: new Date() },
-  ];
+  ]
 
-  const postsUrls = posts
-    .filter((post) => post?.slug)
-    .map((post) => ({
-      url: `${SITE_URL}/tech-blog/posts/${post.slug}`,
-      lastModified: post.date || new Date(),
-    }));
+  const postUrls: MetadataRoute.Sitemap = posts
+    .filter((p) => p?.slug)
+    .map((p) => ({
+      url: `${SITE_URL}/blog/${p.slug}`,
+      lastModified: p.date ? new Date(p.date) : new Date(),
+    }))
 
-  return [...pages, ...postsUrls];
+  return [...pages, ...postUrls]
 }
