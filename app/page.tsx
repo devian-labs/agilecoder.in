@@ -91,7 +91,7 @@ export default async function HomePage() {
 
               <p className="text-zinc-400 text-lg leading-relaxed mb-10">
                 AgileCoder is where Devian Labs shares what it builds. Tutorials,
-                deep-dives, books, and production-ready boilerplates — for developers
+                deep-dives, books, and production-ready boilerplates - for developers
                 who get things done by actually shipping.
               </p>
 
@@ -385,7 +385,7 @@ export default async function HomePage() {
               </a>
             ))}
 
-            {/* Upcoming previews — show first 2 */}
+            {/* Upcoming previews - show first 2 */}
             {upcomingBoilerplates.slice(0, 2).map((bp) => (
               <div key={bp.title}
                 className="rounded-2xl border border-zinc-800 bg-zinc-900/40 p-5 opacity-60">
@@ -423,7 +423,7 @@ export default async function HomePage() {
           </h2>
           <p className="text-zinc-400 mb-8 leading-relaxed">
             New tutorials, book updates, and behind-the-scenes notes from the studio.
-            Sent when there&apos;s something worth sending — no schedule, no spam.
+            Sent when there&apos;s something worth sending - no schedule, no spam.
           </p>
           <HomeNewsletter />
         </div>

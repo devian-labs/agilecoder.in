@@ -1,19 +1,15 @@
 import { db } from "@/lib/firebase"
 import {
   collection,
-  collectionGroup,
   addDoc,
   getDocs,
-  getDoc,
   doc,
   updateDoc,
   deleteDoc,
   query,
-  orderBy,
   where,
   serverTimestamp,
   Timestamp,
-  limit,
 } from "firebase/firestore"
 
 export interface Comment {
@@ -51,9 +47,11 @@ function toComment(d: any, slug: string): Comment {
 // ── Public (reader-facing) ────────────────────────────────────────────────────
 
 export async function getApprovedComments(slug: string): Promise<Comment[]> {
-  const q = query(commentsRef(slug), where("approved", "==", true), orderBy("createdAt", "asc"))
+  const q = query(commentsRef(slug), where("approved", "==", true))
   const snap = await getDocs(q)
-  return snap.docs.map((d) => toComment(d, slug))
+  return snap.docs
+    .map((d) => toComment(d, slug))
+    .sort((a, b) => a.createdAt.localeCompare(b.createdAt))
 }
 
 export async function addComment(slug: string, author: string, content: string): Promise<void> {
@@ -67,32 +65,29 @@ export async function addComment(slug: string, author: string, content: string):
 
 // ── Admin ─────────────────────────────────────────────────────────────────────
 
-export async function getAllPendingComments(maxResults = 100): Promise<Comment[]> {
-  const q = query(
-    collectionGroup(db, "comments"),
-    where("approved", "==", false),
-    orderBy("createdAt", "desc"),
-    limit(maxResults)
+async function getAllCommentsForSlugs(slugs: string[]): Promise<Comment[]> {
+  if (slugs.length === 0) return []
+  const results = await Promise.all(
+    slugs.map(async (slug) => {
+      const snap = await getDocs(commentsRef(slug))
+      return snap.docs.map((d) => toComment(d, slug))
+    })
   )
-  const snap = await getDocs(q)
-  return snap.docs.map((d) => {
-    const slug = d.ref.parent.parent?.id ?? ""
-    return toComment(d, slug)
-  })
+  return results.flat()
 }
 
-export async function getAllApprovedComments(maxResults = 200): Promise<Comment[]> {
-  const q = query(
-    collectionGroup(db, "comments"),
-    where("approved", "==", true),
-    orderBy("createdAt", "desc"),
-    limit(maxResults)
-  )
-  const snap = await getDocs(q)
-  return snap.docs.map((d) => {
-    const slug = d.ref.parent.parent?.id ?? ""
-    return toComment(d, slug)
-  })
+export async function getAllPendingComments(slugs: string[]): Promise<Comment[]> {
+  const all = await getAllCommentsForSlugs(slugs)
+  return all
+    .filter((c) => !c.approved)
+    .sort((a, b) => b.createdAt.localeCompare(a.createdAt))
+}
+
+export async function getAllApprovedComments(slugs: string[]): Promise<Comment[]> {
+  const all = await getAllCommentsForSlugs(slugs)
+  return all
+    .filter((c) => c.approved)
+    .sort((a, b) => b.createdAt.localeCompare(a.createdAt))
 }
 
 export async function getCommentCountBySlug(slug: string): Promise<{ pending: number; approved: number }> {

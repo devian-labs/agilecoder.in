@@ -194,7 +194,7 @@ export function CodeWidgetEditor({ value, onChange }: Props) {
             <div className="flex items-center gap-2 px-3 py-2 bg-zinc-50 border-b border-zinc-200">
               <span className="w-2 h-2 rounded-full bg-zinc-400" />
               <span className="text-xs text-zinc-400 font-mono">
-                Preview — {runtime === "p5js" ? "p5.js" : "Vanilla JS"}
+                Preview - {runtime === "p5js" ? "p5.js" : "Vanilla JS"}
               </span>
             </div>
             <iframe

@@ -1,13 +1,12 @@
 import { db } from "@/lib/firebase"
 import {
   collection,
-  addDoc,
+  setDoc,
   getDocs,
   deleteDoc,
   doc,
   query,
   orderBy,
-  where,
   serverTimestamp,
   Timestamp,
 } from "firebase/firestore"
@@ -21,10 +20,11 @@ export interface Subscriber {
 const ref = collection(db, "subscribers")
 
 export async function addSubscriber(email: string): Promise<void> {
-  const existing = await getDocs(query(ref, where("email", "==", email.toLowerCase().trim())))
-  if (!existing.empty) return // already subscribed
-  await addDoc(ref, {
-    email: email.toLowerCase().trim(),
+  // Use email-derived ID so no read is needed (idempotent, no duplicate rule required)
+  const normalized = email.toLowerCase().trim()
+  const id = normalized.replace(/[^a-z0-9]/g, "_")
+  await setDoc(doc(db, "subscribers", id), {
+    email: normalized,
     subscribedAt: serverTimestamp(),
   })
 }

@@ -19,7 +19,7 @@ export function HomeNewsletter() {
       toast.success("Subscribed! Welcome aboard.")
     } catch {
       setState("error")
-      toast.error("Subscription failed — please try again.")
+      toast.error("Subscription failed - please try again.")
     }
   }
 

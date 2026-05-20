@@ -223,7 +223,7 @@ At the heart of the Koch curve lies its iterative construction, a process that u
 <li>Starting with a single line segment, each segment undergoes a transformation, where it is divided into four smaller segments.</li>
 <li>The middle segment is then replaced by two smaller segments forming a new shape.</li>
 <li>This iterative process continues indefinitely, leading to an infinitely complex curve.</li>
-<li>At each iteration, the Koch curve exhibits self-similarity—smaller parts of the curve resemble the whole, albeit at different scales.</li>
+<li>At each iteration, the Koch curve exhibits self-similarity-smaller parts of the curve resemble the whole, albeit at different scales.</li>
 <li>This remarkable property emphasizes the fractal nature of the Koch curve, where complexity remains constant, regardless of the level of magnification.</li>
 </ul>
 <p><em>We can create a snowflake like pattern using this koch curve. This snowflake pattern is called the <a href="/sketch/koch_snowflake">Koch SnowFlake</a>. You can read about that in this <a href="/sketch/koch_snowflake">article</a></em></p>
@@ -327,7 +327,7 @@ function rotateVector(v, angle) {
 </ol>
 <p>In conclusion, the Koch Curve offers profound insights into the world of fractals and their infinite complexity. It highlights the interplay between simplicity and complexity, challenging our understanding of geometry and infinity. As a powerful educational tool and a source of inspiration for artists and mathematicians alike, the Koch Curve continues to leave a lasting impact on the realms of mathematics, science, and art.</p>`,
   "koch-snowflake": `<p>This is the follow up of the <a href="/sketch/koch_curve">Koch Curve</a>, You can read about the mathematical significance of the Koch Curve in this <a href="/sketch/koch_curve">article</a>.</p>
-<p>At its core, the Koch snowflake begins with an equilateral triangle—a straightforward geometric shape. However, this seemingly simple shape undergoes a series of transformations that unveil its true magic. By iteratively replacing each straight line segment of the initial triangle with smaller segments, the snowflake pattern emerges. In each iteration, four smaller triangles are added to the previous segment, and this process repeats indefinitely. What starts as a basic geometric shape evolves into an infinitely intricate boundary.</p>
+<p>At its core, the Koch snowflake begins with an equilateral triangle-a straightforward geometric shape. However, this seemingly simple shape undergoes a series of transformations that unveil its true magic. By iteratively replacing each straight line segment of the initial triangle with smaller segments, the snowflake pattern emerges. In each iteration, four smaller triangles are added to the previous segment, and this process repeats indefinitely. What starts as a basic geometric shape evolves into an infinitely intricate boundary.</p>
 <p>One of the most fascinating features of the Koch snowflake is its self-similarity. At any level of iteration, a smaller portion of the snowflake looks like a scaled-down version of the entire shape. This property reveals the fractal nature of the Koch snowflake, where the complexity is maintained across different scales.</p>
 <h4 id="how-can-we-reproduce-this-pattern">How can we reproduce this pattern</h4>
 <pre><code class="language-js">let segments = []
@@ -367,13 +367,13 @@ const draw = () => {
 <h4 id="some-of-the-facts-about-koch-snowflake">Some of the Facts about Koch Snowflake</h4>
 <ol>
 <li>
-<p><strong>Fractal Geometry:</strong> The Koch snowflake is one of the earliest and most well-known examples of a fractal—a geometric shape that exhibits self-similarity and complexity at every level of magnification.</p>
+<p><strong>Fractal Geometry:</strong> The Koch snowflake is one of the earliest and most well-known examples of a fractal-a geometric shape that exhibits self-similarity and complexity at every level of magnification.</p>
 </li>
 <li>
 <p><strong>Named After Helge von Koch:</strong> The fractal was first described by the Swedish mathematician Helge von Koch in 1904. He introduced it as a way to illustrate the concept of a continuous curve with an infinite length, despite starting from a finite initial shape.</p>
 </li>
 <li>
-<p><strong>Infinite Perimeter, Finite Area:</strong> The Koch snowflake has a remarkable property—the perimeter of the shape becomes infinitely long as the number of iterations approaches infinity, while the area remains finite.</p>
+<p><strong>Infinite Perimeter, Finite Area:</strong> The Koch snowflake has a remarkable property-the perimeter of the shape becomes infinitely long as the number of iterations approaches infinity, while the area remains finite.</p>
 </li>
 <li>
 <p><strong>Iterative Construction:</strong> The Koch snowflake is constructed through a recursive process. Starting with an equilateral triangle, each side is divided into four segments, and the middle segment is replaced by two smaller segments to create a new shape. This process is repeated infinitely.</p>
@@ -385,7 +385,7 @@ const draw = () => {
 <p><strong>Self-Similarity:</strong> At every level of iteration, the Koch snowflake exhibits self-similarity. Each smaller portion of the snowflake looks similar to the whole, albeit at a different scale.</p>
 </li>
 <li>
-<p><strong>Fractal Art:</strong> The Koch snowflake, with its beautiful and intricate patterns, has become a popular subject for fractal art—a form of digital or traditional art that employs mathematical algorithms to create stunning visual representations.</p>
+<p><strong>Fractal Art:</strong> The Koch snowflake, with its beautiful and intricate patterns, has become a popular subject for fractal art-a form of digital or traditional art that employs mathematical algorithms to create stunning visual representations.</p>
 </li>
 <li>
 <p><strong>Applications:</strong> Fractals, including the Koch snowflake, have found applications in various fields such as computer graphics, terrain generation, data compression, and even antenna design.</p>
@@ -857,7 +857,7 @@ function draw() {
 </li>
 </ol>
 <p>The "10 PRINT" program's legacy as an iconic piece of code showcases the artistic and creative possibilities that exist within the world of programming. Its elegance lies in its simplicity, proving that a few lines of code can create captivating and visually striking results.</p>`,
-  "times-table-animation": `<p>The <strong>Times Table Animation</strong> holds a surprising secret beyond its educational benefits—it can produce captivating mathematical curves like the cardiod, nephroid, and more. By cleverly combining multiplication tables with geometric shapes, this animation uncovers the hidden beauty of mathematics. As each multiplication fact is represented by a specific movement or pattern, these intricate shapes emerge on the screen, mesmerizing viewers with their elegance. The cardioid, with its heart-like form, comes to life through the animation's rhythmic multiplication patterns. Similarly, the nephroid, resembling a kidney bean, appears as the animation unravels the multiplication secrets. This intriguing fusion of math and art not only enriches students' understanding of multiplication but also introduces them to the fascinating world of mathematical curves, sparking curiosity and appreciation for the wonders of mathematics.</p>
+  "times-table-animation": `<p>The <strong>Times Table Animation</strong> holds a surprising secret beyond its educational benefits-it can produce captivating mathematical curves like the cardiod, nephroid, and more. By cleverly combining multiplication tables with geometric shapes, this animation uncovers the hidden beauty of mathematics. As each multiplication fact is represented by a specific movement or pattern, these intricate shapes emerge on the screen, mesmerizing viewers with their elegance. The cardioid, with its heart-like form, comes to life through the animation's rhythmic multiplication patterns. Similarly, the nephroid, resembling a kidney bean, appears as the animation unravels the multiplication secrets. This intriguing fusion of math and art not only enriches students' understanding of multiplication but also introduces them to the fascinating world of mathematical curves, sparking curiosity and appreciation for the wonders of mathematics.</p>
 <h4 id="how-can-we-reproduce-this">How can we reproduce this</h4>
 <pre><code class="language-js">let factor = 2
 let totalPoints = 400

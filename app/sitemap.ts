@@ -8,7 +8,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   try {
     posts = await getPublishedPosts()
   } catch {
-    // Firestore unavailable at build time — skip post URLs
+    // Firestore unavailable at build time - skip post URLs
   }
 
   const pages: MetadataRoute.Sitemap = [

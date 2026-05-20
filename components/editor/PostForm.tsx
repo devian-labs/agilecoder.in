@@ -176,7 +176,7 @@ export function PostForm({ initialData, mode }: Props) {
             placeholder="Start writing your post..."
           />
 
-          {/* Code widget — full-width below the editor */}
+          {/* Code widget - full-width below the editor */}
           <CodeWidgetEditor
             value={form.codeWidget}
             onChange={(val) => set("codeWidget", val)}
@@ -202,7 +202,7 @@ export function PostForm({ initialData, mode }: Props) {
                 onChange={(e) => set("category", e.target.value)}
                 className="w-full px-3 py-2 text-sm rounded-lg border border-zinc-200 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-400"
               >
-                <option value="">— No category —</option>
+                <option value="">- No category -</option>
                 {categories.map((c) => (
                   <option key={c.slug} value={c.slug}>{c.icon} {c.name}</option>
                 ))}

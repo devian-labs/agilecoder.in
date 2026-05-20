@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description: "Production-ready starter kits, boilerplates, and reusable code packages.",
 }
 
-// Seed from existing Gumroad products — add more as they're created
+// Seed from existing Gumroad products - add more as they're created
 const snippets: {
   title: string
   description: string

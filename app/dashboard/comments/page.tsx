@@ -73,12 +73,21 @@ export default function CommentsPage() {
   const [search, setSearch] = useState("")
 
   useEffect(() => {
-    import("@/lib/firestore/posts-crud").then(({ getAllPostsAdmin }) =>
-      getAllPostsAdmin().then(setAllPosts).catch(() => {})
-    )
-    Promise.all([getAllPendingComments(200), getAllApprovedComments(200)])
-      .then(([p, a]) => { setPending(p); setApproved(a); setLoading(false) })
-      .catch(() => { toast.error("Failed to load comments"); setLoading(false) })
+    import("@/lib/firestore/posts-crud").then(({ getAllPostsAdmin }) => {
+      getAllPostsAdmin()
+        .then(async (posts) => {
+          setAllPosts(posts)
+          const slugs = posts.map((p) => p.slug)
+          const [p, a] = await Promise.all([
+            getAllPendingComments(slugs),
+            getAllApprovedComments(slugs),
+          ])
+          setPending(p)
+          setApproved(a)
+          setLoading(false)
+        })
+        .catch(() => { toast.error("Failed to load comments"); setLoading(false) })
+    })
   }, [])
 
   function getTitle(slug: string) {
@@ -116,7 +125,7 @@ export default function CommentsPage() {
   }, [currentList, search, allPosts])
 
   return (
-    <div className="px-8 py-8 max-w-4xl">
+    <div className="px-8 py-8">
       <div className="mb-6">
         <h1 className="text-2xl font-bold text-zinc-900">Comments</h1>
         <p className="text-zinc-500 text-sm mt-1">

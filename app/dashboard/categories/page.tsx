@@ -140,7 +140,7 @@ export default function CategoriesPage() {
   }
 
   return (
-    <div className="px-8 py-8 max-w-5xl">
+    <div className="px-8 py-8">
       <div className="mb-6 flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold text-zinc-900">Categories</h1>
@@ -149,7 +149,7 @@ export default function CategoriesPage() {
         <div className="flex gap-2">
           {categories.length === 0 && (
             <button onClick={seedDefaults} disabled={seeding}
-              className="flex items-center gap-2 px-4 py-2 rounded-xl border border-zinc-200 text-sm text-zinc-700 hover:bg-zinc-50 transition-colors disabled:opacity-50">
+              className="flex items-center gap-2 px-4 py-2 rounded-xl border border-zinc-200 text-sm font-semibold text-zinc-700 hover:bg-zinc-50 transition-colors disabled:opacity-50">
               {seeding ? <Loader2 className="h-4 w-4 animate-spin" /> : <Tag className="h-4 w-4" />}
               Seed defaults
             </button>

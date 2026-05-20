@@ -5,17 +5,16 @@ import { signOut } from "firebase/auth"
 import { auth } from "@/lib/firebase"
 import {
   LayoutDashboard, FileText, MessageSquare, Users,
-  PenSquare, ExternalLink, LogOut, Rss, Tag, Plus, Code2,
+  ExternalLink, LogOut, Rss, Tag, Plus, BookOpen,
 } from "lucide-react"
 
 const nav = [
   { label: "Overview", href: "/dashboard", icon: LayoutDashboard },
   { label: "Posts", href: "/dashboard/posts", icon: FileText },
+  { label: "Series", href: "/dashboard/series", icon: BookOpen },
   { label: "Categories", href: "/dashboard/categories", icon: Tag },
   { label: "Comments", href: "/dashboard/comments", icon: MessageSquare },
   { label: "Subscribers", href: "/dashboard/subscribers", icon: Users },
-  { label: "Widget Scripts", href: "/dashboard/migrate-widgets", icon: Code2 },
-  { label: "Sketch Migration", href: "/dashboard/migrate-sketches", icon: Rss },
 ]
 
 export function Sidebar() {

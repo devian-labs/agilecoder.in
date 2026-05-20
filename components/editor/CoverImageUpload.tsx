@@ -27,7 +27,7 @@ export function CoverImageUpload({ value, onChange }: Props) {
         toast.error(data.error ?? "Upload failed", { id })
       }
     } catch {
-      toast.error("Upload failed — check your connection", { id })
+      toast.error("Upload failed - check your connection", { id })
     } finally {
       setUploading(false)
     }
@@ -66,7 +66,7 @@ export function CoverImageUpload({ value, onChange }: Props) {
             <>
               <Upload className="h-6 w-6" />
               <span className="text-sm font-medium">Upload cover image</span>
-              <span className="text-xs">PNG, JPG, WebP — recommended 1200×630</span>
+              <span className="text-xs">PNG, JPG, WebP - recommended 1200×630</span>
             </>
           )}
         </button>

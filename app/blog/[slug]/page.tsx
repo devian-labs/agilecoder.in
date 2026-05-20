@@ -9,7 +9,6 @@ import { ViewCounter } from "@/components/blog/ViewCounter"
 import { LikeButton } from "@/components/blog/LikeButton"
 import { Comments } from "@/components/blog/Comments"
 import { NewsletterStrip } from "@/components/blog/NewsletterStrip"
-import { AuthorBio } from "@/components/blog/AuthorBio"
 import { ShareButton } from "@/components/ShareButton"
 import PostContent from "@/components/blog/PostContent"
 import { CodeWidget } from "@/components/blog/CodeWidget"
@@ -122,7 +121,7 @@ export default async function BlogPostPage({ params }: Params) {
           </div>
         )}
 
-        {/* Interactive code widget — shown before article body */}
+        {/* Interactive code widget - shown before article body */}
         {post.codeWidget && (
           <CodeWidget
             code={post.codeWidget.code}
@@ -131,16 +130,16 @@ export default async function BlogPostPage({ params }: Params) {
           />
         )}
 
-        {/* Ad slot — top of content */}
+        {/* Ad slot - top of content */}
         <div className="mb-8 rounded-xl border border-dashed border-zinc-700 p-4 text-center text-zinc-600 text-xs">
-          {/* Google AdSense slot — insert ad unit code here */}
+          {/* Google AdSense slot - insert ad unit code here */}
           Advertisement
         </div>
 
         {/* Content */}
         <PostContent html={post.content} />
 
-        {/* Ad slot — bottom of content */}
+        {/* Ad slot - bottom of content */}
         <div className="mt-10 mb-6 rounded-xl border border-dashed border-zinc-700 p-4 text-center text-zinc-600 text-xs">
           Advertisement
         </div>
@@ -149,11 +148,6 @@ export default async function BlogPostPage({ params }: Params) {
         <div className="flex items-center gap-4 py-8 border-y border-zinc-800">
           <LikeButton slug={post.slug} />
           <ShareButton title={post.title} />
-        </div>
-
-        {/* Author */}
-        <div className="py-8 border-b border-zinc-800">
-          <AuthorBio author={post.author} />
         </div>
 
         {/* Newsletter */}

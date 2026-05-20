@@ -30,7 +30,7 @@ export function Comments({ slug }: { slug: string }) {
       setSubmitted(true)
       setAuthor("")
       setContent("")
-      toast.success("Comment submitted — it'll appear after review")
+      toast.success("Comment submitted - it'll appear after review")
     } catch {
       toast.error("Failed to submit comment. Please try again.")
     } finally {

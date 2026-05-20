@@ -15,7 +15,7 @@ export function ViewCounter({ slug }: { slug: string }) {
         const stats = await getPostStats(slug)
         if (!cancelled) setViews(stats.views)
       } catch {
-        // Firebase not configured — silently skip
+        // Firebase not configured - silently skip
       }
     }
 

@@ -78,7 +78,7 @@ export default function PostsPage() {
   const drafts = posts.length - published
 
   return (
-    <div className="px-8 py-8 max-w-7xl">
+    <div className="px-8 py-8">
       <div className="mb-6 flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold text-zinc-900">Posts</h1>
@@ -142,7 +142,7 @@ export default function PostsPage() {
               {post.featured && <span className="text-[10px] px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 font-medium">Featured</span>}
             </div>
             <span className="text-xs text-zinc-400 truncate">
-              {post.category ? (CATEGORY_LABELS[post.category as PostCategory] ?? post.category) : "—"}
+              {post.category ? (CATEGORY_LABELS[post.category as PostCategory] ?? post.category) : "-"}
             </span>
             <span className="text-xs text-zinc-400">{formatDate(post.date)}</span>
             <span className="flex items-center gap-1 text-xs text-zinc-500"><Eye className="h-3 w-3" />{post.views.toLocaleString()}</span>

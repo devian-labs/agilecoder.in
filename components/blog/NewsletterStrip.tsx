@@ -22,7 +22,7 @@ export function NewsletterStrip() {
     } catch {
       setState("error")
       setMsg("Something went wrong. Try again.")
-      toast.error("Subscription failed — please try again.")
+      toast.error("Subscription failed - please try again.")
     }
   }
 

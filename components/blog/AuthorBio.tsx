@@ -19,7 +19,7 @@ const AUTHORS: Record<string, Author> = {
   },
   "AgileCoder": {
     name: "AgileCoder",
-    bio: "The AgileCoder team — bringing you the latest on web dev, architecture, and creative coding.",
+    bio: "The AgileCoder team - bringing you the latest on web dev, architecture, and creative coding.",
     website: "https://www.agilecoder.in",
   },
 }

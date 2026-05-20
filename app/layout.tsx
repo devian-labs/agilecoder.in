@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     template: "%s | AgileCoder",
   },
   description:
-    "From cutting-edge dev tools and plugins to full-fledged websites — we craft and ship modern digital experiences at speed.",
+    "From cutting-edge dev tools and plugins to full-fledged websites - we craft and ship modern digital experiences at speed.",
   keywords: ["Software Development", "Web Development", "AgileCoder", "Tech Blog", "Creative Coding", "Books", "Developer Tools"],
   authors: [{ name: "AgileCoder Team" }],
   creator: "AgileCoder",
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "AgileCoder - Innovate. Build. Deliver.",
     description:
-      "From cutting-edge dev tools and plugins to full-fledged websites — we craft and ship modern digital experiences at speed.",
+      "From cutting-edge dev tools and plugins to full-fledged websites - we craft and ship modern digital experiences at speed.",
     url: "https://www.agilecoder.in",
     siteName: "AgileCoder",
     type: "website",
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "AgileCoder - Innovate. Build. Deliver.",
     description:
-      "From cutting-edge dev tools and plugins to full-fledged websites — we craft and ship modern digital experiences at speed.",
+      "From cutting-edge dev tools and plugins to full-fledged websites - we craft and ship modern digital experiences at speed.",
     creator: "@agilecoder_in",
   },
   robots: {

@@ -1,6 +1,6 @@
 "use client"
 import Link from "next/link"
-import { Github, Mail, ExternalLink } from "lucide-react"
+import { Mail, ExternalLink } from "lucide-react"
 
 function YouTubeIcon({ className }: { className?: string }) {
   return (
@@ -17,7 +17,7 @@ export default function Footer() {
 
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
 
-          {/* Column 1 — Brand */}
+          {/* Column 1 - Brand */}
           <div className="md:col-span-1">
             <div className="flex items-center gap-3 mb-4">
               <img src="/agilecoder-dark.png" alt="AgileCoder Logo" className="w-8 h-8 rounded-full" />
@@ -32,7 +32,7 @@ export default function Footer() {
             </a>
           </div>
 
-          {/* Column 2 — Learn */}
+          {/* Column 2 - Learn */}
           <div>
             <h4 className="text-xs font-semibold uppercase tracking-widest text-zinc-500 mb-5">Learn</h4>
             <ul className="space-y-3">
@@ -46,10 +46,13 @@ export default function Footer() {
               <li>
                 <Link href="#newsletter" className="text-sm text-zinc-400 hover:text-white transition-colors">Newsletter</Link>
               </li>
+              <li>
+                <Link href="/about" className="text-sm text-zinc-400 hover:text-white transition-colors">About</Link>
+              </li>
             </ul>
           </div>
 
-          {/* Column 3 — Store */}
+          {/* Column 3 - Store */}
           <div>
             <h4 className="text-xs font-semibold uppercase tracking-widest text-zinc-500 mb-5">Store</h4>
             <ul className="space-y-3">
@@ -63,7 +66,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Column 4 — Connect */}
+          {/* Column 4 - Connect */}
           <div>
             <h4 className="text-xs font-semibold uppercase tracking-widest text-zinc-500 mb-5">Connect</h4>
             <div className="flex gap-3 mb-4">
@@ -71,11 +74,6 @@ export default function Footer() {
                 aria-label="YouTube"
                 className="w-9 h-9 rounded-lg bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-400 hover:text-white hover:border-zinc-600 transition-all">
                 <YouTubeIcon className="h-4 w-4" />
-              </a>
-              <a href="https://github.com/Agile-Coder-Org" target="_blank" rel="noopener noreferrer"
-                aria-label="GitHub"
-                className="w-9 h-9 rounded-lg bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-400 hover:text-white hover:border-zinc-600 transition-all">
-                <Github className="h-4 w-4" />
               </a>
               <a href="mailto:hello@devianlabs.com"
                 aria-label="Email"

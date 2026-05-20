@@ -6,7 +6,7 @@ import { publishedBoilerplates, upcomingBoilerplates } from "@/data/boilerplates
 
 export const metadata: Metadata = {
   title: "Store | AgileCoder",
-  description: "Books, boilerplates, and tools from AgileCoder — real products from a working software studio.",
+  description: "Books, boilerplates, and tools from AgileCoder - real products from a working software studio.",
 }
 
 const featuredBook = books.find((b) => b.featured)

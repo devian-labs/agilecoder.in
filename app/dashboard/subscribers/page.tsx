@@ -54,7 +54,7 @@ export default function SubscribersPage() {
   }
 
   return (
-    <div className="px-8 py-8 max-w-3xl">
+    <div className="px-8 py-8">
       <div className="mb-6 flex items-start justify-between">
         <div>
           <h1 className="text-2xl font-bold text-zinc-900">Subscribers</h1>
@@ -63,7 +63,7 @@ export default function SubscribersPage() {
         <button
           onClick={exportCSV}
           disabled={loading || subscribers.length === 0}
-          className="flex items-center gap-2 px-4 py-2 rounded-xl bg-zinc-900 text-white text-sm font-medium hover:bg-zinc-700 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+          className="flex items-center gap-2 px-4 py-2 rounded-xl bg-blue-600 text-white text-sm font-semibold hover:bg-blue-700 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
         >
           <Download className="h-4 w-4" />
           Export CSV

@@ -81,7 +81,7 @@ function SketchRow({ row, force, onDone }: { row: Row; force: boolean; onDone: (
           <p className="font-semibold text-zinc-900 text-sm truncate">{row.sketch.title}</p>
           <p className="text-xs text-zinc-400 font-mono">{row.sketch.slug}</p>
           {status === "error" && <p className="text-xs text-red-500 mt-0.5">{row.error}</p>}
-          {status === "exists" && <p className="text-xs text-zinc-400 mt-0.5">Already in Firestore — skipped</p>}
+          {status === "exists" && <p className="text-xs text-zinc-400 mt-0.5">Already in Firestore - skipped</p>}
         </div>
 
         <div className="flex items-center gap-2 shrink-0">
@@ -160,7 +160,7 @@ export default function MigrateSketchesPage() {
         <div>
           <h1 className="text-2xl font-bold mb-1">Migrate Creative Coding Sketches</h1>
           <p className="text-zinc-500 text-sm">
-            Creates {CREATIVE_CODING_SKETCHES.length} Firestore posts — one per fractal sketch — with the p5.js widget code embedded.
+            Creates {CREATIVE_CODING_SKETCHES.length} Firestore posts - one per fractal sketch - with the p5.js widget code embedded.
           </p>
         </div>
       </div>

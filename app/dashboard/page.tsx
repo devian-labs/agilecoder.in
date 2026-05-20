@@ -38,17 +38,19 @@ export default function DashboardPage() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    getAllPostsAdmin().then(setAllPosts).catch(() => {})
     Promise.all([
       getSiteTotals(),
       getTopPostsByViews(5),
-      getAllPendingComments(10),
+      getAllPostsAdmin(),
       getSubscriberCount(),
-    ]).then(([t, top, pending, subCount]) => {
+    ]).then(async ([t, top, posts, subCount]) => {
       setTotals(t)
       setTopPosts(top)
-      setPendingComments(pending)
+      setAllPosts(posts)
       setSubscriberCount(subCount)
+      const slugs = posts.map((p) => p.slug)
+      const pending = await getAllPendingComments(slugs)
+      setPendingComments(pending.slice(0, 10))
       setLoading(false)
     }).catch(() => setLoading(false))
   }, [])
@@ -74,7 +76,7 @@ export default function DashboardPage() {
   const drafts = allPosts.length - published
 
   return (
-    <div className="px-8 py-8 max-w-6xl">
+    <div className="px-8 py-8">
       <div className="mb-8 flex items-start justify-between">
         <div>
           <h1 className="text-2xl font-bold text-zinc-900">{greeting}, Smruti 👋</h1>

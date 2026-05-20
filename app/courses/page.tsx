@@ -6,7 +6,7 @@ import { GraduationCap, ArrowLeft, CheckCircle, Loader2 } from "lucide-react"
 const upcomingCourses = [
   {
     title: "Backend Engineering with Node.js & TypeScript",
-    description: "Build production-grade APIs from scratch — auth, databases, queues, monitoring.",
+    description: "Build production-grade APIs from scratch - auth, databases, queues, monitoring.",
     topics: ["REST & GraphQL APIs", "JWT + OAuth", "PostgreSQL & Redis", "Docker & CI/CD"],
     color: "border-cyan-500/20 bg-cyan-500/[0.03]",
     iconColor: "text-cyan-400",
@@ -20,7 +20,7 @@ const upcomingCourses = [
   },
   {
     title: "Creative Coding with p5.js",
-    description: "Turn code into art — generative visuals, simulations, and interactive experiments.",
+    description: "Turn code into art - generative visuals, simulations, and interactive experiments.",
     topics: ["p5.js fundamentals", "Generative art", "Physics simulations", "WebGL basics"],
     color: "border-emerald-500/20 bg-emerald-500/[0.03]",
     iconColor: "text-emerald-400",
@@ -99,7 +99,7 @@ export default function CoursesPage() {
         <div className="rounded-2xl border border-cyan-500/20 bg-cyan-500/[0.04] p-8 text-center max-w-md mx-auto">
           <h2 className="text-xl font-bold text-white mb-2">Get early access</h2>
           <p className="text-sm text-zinc-400 mb-6">
-            Join the waitlist and be the first to know when courses drop — plus early-bird pricing.
+            Join the waitlist and be the first to know when courses drop - plus early-bird pricing.
           </p>
           {submitted ? (
             <div className="flex items-center justify-center gap-2 text-sm text-emerald-400 font-medium">

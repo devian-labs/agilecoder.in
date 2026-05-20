@@ -13,11 +13,11 @@ export const CREATIVE_CODING_SKETCHES: SketchPost[] = [
     slug: "sierpinski-triangle",
     title: "Sierpiński Triangle: Recursive Fractals in Code",
     excerpt:
-      "Visualise the Sierpiński triangle through recursive geometry. A simple rule — divide, remove the centre — repeated until you can't see the individual pieces anymore.",
+      "Visualise the Sierpiński triangle through recursive geometry. A simple rule - divide, remove the centre - repeated until you can't see the individual pieces anymore.",
     coverImage: "/assets/thumbnails/sierpiensky.png",
     tags: ["fractals", "generative-art", "recursion", "p5js"],
     height: 520,
-    code: `// Sierpiński Triangle — recursive subdivision
+    code: `// Sierpiński Triangle - recursive subdivision
 function setup() {
   createCanvas(500, 500);
   background(10, 10, 15);
@@ -56,11 +56,11 @@ function midpoint(p1, p2) {
     slug: "ten-print",
     title: "10 PRINT: One-Line Infinite Maze",
     excerpt:
-      "A single random decision — slash or backslash — repeated across a grid produces an endlessly varied maze. Originally a one-line Commodore 64 BASIC program.",
+      "A single random decision - slash or backslash - repeated across a grid produces an endlessly varied maze. Originally a one-line Commodore 64 BASIC program.",
     coverImage: "/assets/thumbnails/ten_print.png",
     tags: ["generative-art", "maze", "randomness", "p5js"],
     height: 520,
-    code: `// 10 PRINT — infinite maze from a single random choice
+    code: `// 10 PRINT - infinite maze from a single random choice
 let len = 22;
 let x = 0;
 let y = 0;
@@ -162,7 +162,7 @@ function draw() {
     slug: "cardioid",
     title: "Cardioid: Uncovering Beauty with the Times Table",
     excerpt:
-      "Multiply each point on a circle by 2 and connect them with lines. At enough resolution the curve that emerges is a perfect heart shape — a cardioid.",
+      "Multiply each point on a circle by 2 and connect them with lines. At enough resolution the curve that emerges is a perfect heart shape - a cardioid.",
     coverImage: "/assets/thumbnails/cardiod.png",
     tags: ["fractals", "generative-art", "mathematics", "p5js"],
     height: 520,
@@ -241,7 +241,7 @@ function windowResized(){resizeCanvas(windowWidth-200,windowHeight);}
     slug: "nephroid",
     title: "Nephroid: The Three Times Table Curve",
     excerpt:
-      "The same circle trick as the cardioid, but multiply by 3 instead of 2. The resulting curve — a kidney-shaped nephroid — appears in reflected light inside a coffee cup.",
+      "The same circle trick as the cardioid, but multiply by 3 instead of 2. The resulting curve - a kidney-shaped nephroid - appears in reflected light inside a coffee cup.",
     coverImage: "/assets/thumbnails/nephroid.png",
     tags: ["fractals", "generative-art", "mathematics", "p5js"],
     height: 520,
@@ -394,7 +394,7 @@ function windowResized(){resizeCanvas(windowWidth-200,windowHeight);}
     slug: "mandelbrot-set",
     title: "Mandelbrot Set: The Most Famous Fractal",
     excerpt:
-      "Defined by a deceptively simple iteration in the complex plane, the Mandelbrot set reveals infinite detail at every level of zoom — a fractal icon of mathematical beauty.",
+      "Defined by a deceptively simple iteration in the complex plane, the Mandelbrot set reveals infinite detail at every level of zoom - a fractal icon of mathematical beauty.",
     coverImage: "/assets/thumbnails/mandelbrot_set.png",
     tags: ["fractals", "mandelbrot", "pixel-art", "mathematics", "p5js"],
     height: 520,
@@ -482,7 +482,7 @@ function windowResized(){resizeCanvas(windowWidth-200,windowHeight);renderMandel
     slug: "julia-set",
     title: "Julia Set: Animated Complex Plane Beauty",
     excerpt:
-      "The Julia set is the Mandelbrot's sibling — same iteration, but the constant C sweeps over time. Watch the fractal morph through an infinite family of shapes.",
+      "The Julia set is the Mandelbrot's sibling - same iteration, but the constant C sweeps over time. Watch the fractal morph through an infinite family of shapes.",
     coverImage: "/assets/thumbnails/julia_set.png",
     tags: ["fractals", "julia-set", "animation", "mathematics", "p5js"],
     height: 520,
@@ -514,7 +514,7 @@ input[type=range]{width:100%;accent-color:#7c3aed;cursor:pointer;}
   </div>
   <div class="info">
     <span class="info-lbl">C parameter</span>
-    <span id="cv">—</span>
+    <span id="cv">-</span>
   </div>
 </div>
 <script>
@@ -564,11 +564,11 @@ function windowResized(){resizeCanvas(windowWidth-200,windowHeight);}
     slug: "koch-curve",
     title: "Koch Curve: Infinite Length, Finite Area",
     excerpt:
-      "Replace every line segment with four smaller ones. Repeat. The Koch curve has infinite perimeter but encloses a finite area — one of the earliest known fractals.",
+      "Replace every line segment with four smaller ones. Repeat. The Koch curve has infinite perimeter but encloses a finite area - one of the earliest known fractals.",
     coverImage: "/assets/thumbnails/koch_curve.png",
     tags: ["fractals", "generative-art", "koch", "mathematics", "p5js"],
     height: 520,
-    code: `// Koch Curve — step-by-step depth animation
+    code: `// Koch Curve - step-by-step depth animation
 let depth = 0;
 let maxDepth = 6;
 
@@ -738,7 +738,7 @@ function windowResized(){resizeCanvas(windowWidth-200,windowHeight);}
     coverImage: "/assets/thumbnails/sierpiensky_carpet.png",
     tags: ["fractals", "generative-art", "recursion", "mathematics", "p5js"],
     height: 520,
-    code: `// Sierpiński Carpet — animated depth
+    code: `// Sierpiński Carpet - animated depth
 let depth = 0;
 let maxDepth = 5;
 
