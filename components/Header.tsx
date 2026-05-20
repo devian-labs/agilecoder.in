@@ -41,15 +41,11 @@ export default function Header() {
           <img className="rounded-full w-8 md:w-9" src="/agilecoder-dark.png" alt="Agile Coder Logo" />
           <div className="flex flex-col leading-none">
             <span className="text-foreground text-base md:text-lg font-bold">AgileCoder</span>
-            <a
-              href="https://devianlabs.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-zinc-500 text-[10px] hidden md:block hover:text-zinc-300 transition-colors tracking-wide uppercase font-medium"
-              onClick={(e) => e.stopPropagation()}
+            <span
+              className="text-zinc-500 text-[10px] hidden md:block tracking-wide uppercase font-medium"
             >
               by Devian Labs
-            </a>
+            </span>
           </div>
         </Link>
 
