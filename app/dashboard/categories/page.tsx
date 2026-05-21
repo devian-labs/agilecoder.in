@@ -40,11 +40,11 @@ function CategoryRow({ cat, onUpdate, onDelete }: {
       <div className="px-6 py-4 border-b border-zinc-50 bg-blue-50/30">
         <div className="grid grid-cols-[60px_1fr_1fr_1fr] gap-3 items-start">
           <input value={form.icon} onChange={(e) => setForm((f) => ({ ...f, icon: e.target.value }))}
-            placeholder="🌐" className="text-xl text-center px-2 py-1.5 rounded-lg border border-zinc-200 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/20" />
+            placeholder="🌐" className="text-xl text-center px-2 py-1.5 rounded-lg border border-zinc-200 bg-white text-zinc-900 focus:outline-none focus:ring-2 focus:ring-blue-500/20" />
           <input value={form.name} onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
-            className="px-3 py-1.5 text-sm rounded-lg border border-zinc-200 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/20" />
+            className="px-3 py-1.5 text-sm rounded-lg border border-zinc-200 bg-white text-zinc-900 focus:outline-none focus:ring-2 focus:ring-blue-500/20" />
           <input value={form.description} onChange={(e) => setForm((f) => ({ ...f, description: e.target.value }))}
-            className="px-3 py-1.5 text-sm rounded-lg border border-zinc-200 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/20" />
+            className="px-3 py-1.5 text-sm rounded-lg border border-zinc-200 bg-white text-zinc-900 focus:outline-none focus:ring-2 focus:ring-blue-500/20" />
           <ColorPicker value={form.color} onChange={(c) => setForm((f) => ({ ...f, color: c }))} />
         </div>
         <div className="flex gap-2 mt-3">
@@ -170,13 +170,13 @@ export default function CategoriesPage() {
           <div className="px-6 py-4 border-b border-zinc-100 bg-blue-50/30">
             <div className="grid grid-cols-[60px_120px_1fr_1fr] gap-3 items-start mb-3">
               <input value={newCat.icon} onChange={(e) => setNewCat((f) => ({ ...f, icon: e.target.value }))}
-                placeholder="🌐" className="text-xl text-center px-2 py-1.5 rounded-lg border border-zinc-200 bg-white focus:outline-none" />
+                placeholder="🌐" className="text-xl text-center px-2 py-1.5 rounded-lg border border-zinc-200 bg-white text-zinc-900 focus:outline-none" />
               <input value={newCat.name} onChange={(e) => setNewCat((f) => ({ ...f, name: e.target.value, slug: e.target.value.toLowerCase().replace(/\s+/g, "-") }))}
-                placeholder="Name" className="px-3 py-1.5 text-sm rounded-lg border border-zinc-200 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/20" />
+                placeholder="Name" className="px-3 py-1.5 text-sm rounded-lg border border-zinc-200 bg-white text-zinc-900 focus:outline-none focus:ring-2 focus:ring-blue-500/20" />
               <input value={newCat.description} onChange={(e) => setNewCat((f) => ({ ...f, description: e.target.value }))}
-                placeholder="Description" className="px-3 py-1.5 text-sm rounded-lg border border-zinc-200 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/20" />
+                placeholder="Description" className="px-3 py-1.5 text-sm rounded-lg border border-zinc-200 bg-white text-zinc-900 focus:outline-none focus:ring-2 focus:ring-blue-500/20" />
               <input value={newCat.slug} onChange={(e) => setNewCat((f) => ({ ...f, slug: e.target.value }))}
-                placeholder="slug" className="px-3 py-1.5 text-sm rounded-lg border border-zinc-200 bg-white focus:outline-none font-mono focus:ring-2 focus:ring-blue-500/20" />
+                placeholder="slug" className="px-3 py-1.5 text-sm rounded-lg border border-zinc-200 bg-white text-zinc-900 font-mono focus:outline-none focus:ring-2 focus:ring-blue-500/20" />
             </div>
             <ColorPicker value={newCat.color ?? "#3b82f6"} onChange={(c) => setNewCat((f) => ({ ...f, color: c }))} />
             <div className="flex gap-2 mt-3">

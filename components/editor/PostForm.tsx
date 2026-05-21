@@ -200,7 +200,7 @@ export function PostForm({ initialData, mode }: Props) {
               <select
                 value={form.category}
                 onChange={(e) => set("category", e.target.value)}
-                className="w-full px-3 py-2 text-sm rounded-lg border border-zinc-200 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-400"
+                className="w-full px-3 py-2 text-sm rounded-lg border border-zinc-200 bg-white text-zinc-900 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-400"
               >
                 <option value="">- No category -</option>
                 {categories.map((c) => (
@@ -214,7 +214,7 @@ export function PostForm({ initialData, mode }: Props) {
               <select
                 value={form.difficulty}
                 onChange={(e) => set("difficulty", e.target.value as any)}
-                className="w-full px-3 py-2 text-sm rounded-lg border border-zinc-200 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-400"
+                className="w-full px-3 py-2 text-sm rounded-lg border border-zinc-200 bg-white text-zinc-900 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-400"
               >
                 {DIFFICULTIES.map((d) => <option key={d} value={d}>{d.charAt(0).toUpperCase() + d.slice(1)}</option>)}
               </select>
@@ -227,7 +227,7 @@ export function PostForm({ initialData, mode }: Props) {
                 onChange={(e) => set("excerpt", e.target.value)}
                 rows={3}
                 placeholder="Brief description for SEO and cards..."
-                className="w-full px-3 py-2 text-sm rounded-lg border border-zinc-200 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-400 resize-none"
+                className="w-full px-3 py-2 text-sm rounded-lg border border-zinc-200 bg-white text-zinc-900 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-400 resize-none"
               />
             </div>
 
@@ -237,7 +237,7 @@ export function PostForm({ initialData, mode }: Props) {
                 type="date"
                 value={form.date}
                 onChange={(e) => set("date", e.target.value)}
-                className="w-full px-3 py-2 text-sm rounded-lg border border-zinc-200 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-400"
+                className="w-full px-3 py-2 text-sm rounded-lg border border-zinc-200 bg-white text-zinc-900 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-400"
               />
             </div>
 
@@ -250,7 +250,7 @@ export function PostForm({ initialData, mode }: Props) {
                   onChange={(e) => setTagInput(e.target.value)}
                   onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(); addTag() } }}
                   placeholder="Add tag..."
-                  className="flex-1 px-3 py-1.5 text-sm rounded-lg border border-zinc-200 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-400"
+                  className="flex-1 px-3 py-1.5 text-sm rounded-lg border border-zinc-200 bg-white text-zinc-900 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-400"
                 />
                 <button type="button" onClick={addTag} className="p-1.5 rounded-lg bg-zinc-900 text-white hover:bg-zinc-700 transition-colors">
                   <Plus className="h-4 w-4" />
@@ -284,7 +284,7 @@ export function PostForm({ initialData, mode }: Props) {
                 value={form.learningPath ?? ""}
                 onChange={(e) => set("learningPath", e.target.value)}
                 placeholder="e.g. react-fundamentals"
-                className="w-full px-3 py-2 text-sm rounded-lg border border-zinc-200 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-400"
+                className="w-full px-3 py-2 text-sm rounded-lg border border-zinc-200 bg-white text-zinc-900 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-400"
               />
             </div>
             <div>
@@ -294,7 +294,7 @@ export function PostForm({ initialData, mode }: Props) {
                 min={1}
                 value={form.learningPathOrder ?? ""}
                 onChange={(e) => set("learningPathOrder", Number(e.target.value))}
-                className="w-full px-3 py-2 text-sm rounded-lg border border-zinc-200 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-400"
+                className="w-full px-3 py-2 text-sm rounded-lg border border-zinc-200 bg-white text-zinc-900 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-400"
               />
             </div>
           </div>
