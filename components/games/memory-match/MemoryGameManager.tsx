@@ -62,7 +62,7 @@ export default function MemoryGameManager() {
                         <GameBoard
                             key={Date.now()} // Force remount on restart for cleanliness
                             config={config}
-                            onGameEnd={(score) => console.log('Tomb Explored!', score)}
+                            onGameEnd={() => {}}
                             onRestart={handleRestart}
                         />
                     </motion.div>

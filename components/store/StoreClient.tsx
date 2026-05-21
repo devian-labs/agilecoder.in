@@ -105,9 +105,15 @@ function ProductCard({ product }: { product: StoreProduct }) {
   )
 }
 
-export default function StoreClient({ products }: { products: StoreProduct[] }) {
+export default function StoreClient({
+  products,
+  initialCategory,
+}: {
+  products: StoreProduct[]
+  initialCategory?: "code" | "book" | "merch"
+}) {
   const [search, setSearch] = useState("")
-  const [category, setCategory] = useState<Category>("all")
+  const [category, setCategory] = useState<Category>(initialCategory ?? "all")
   const [sort, setSort] = useState<Sort>("default")
 
   const filtered = useMemo(() => {

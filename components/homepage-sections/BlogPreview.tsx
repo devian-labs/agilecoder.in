@@ -10,8 +10,6 @@ interface BlogPreviewProps {
 export default function BlogPreview({ posts }: BlogPreviewProps) {
   const latestPosts = posts.slice(0, 3);
 
-  console.log(posts)
-
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {

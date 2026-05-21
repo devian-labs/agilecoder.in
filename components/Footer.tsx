@@ -57,11 +57,13 @@ export default function Footer() {
             <h4 className="text-xs font-semibold uppercase tracking-widest text-zinc-500 mb-5">Store</h4>
             <ul className="space-y-3">
               <li>
-                <Link href="/store" className="text-sm text-zinc-400 hover:text-white transition-colors">Books</Link>
+                <Link href="/store" className="text-sm text-zinc-400 hover:text-white transition-colors">All Products</Link>
               </li>
               <li>
-                <a href="https://devianlabs.gumroad.com" target="_blank" rel="noopener noreferrer"
-                  className="text-sm text-zinc-400 hover:text-white transition-colors">Boilerplates</a>
+                <Link href="/store?category=book" className="text-sm text-zinc-400 hover:text-white transition-colors">Books</Link>
+              </li>
+              <li>
+                <Link href="/store?category=code" className="text-sm text-zinc-400 hover:text-white transition-colors">Boilerplates</Link>
               </li>
             </ul>
           </div>

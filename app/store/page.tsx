@@ -10,7 +10,12 @@ export const metadata: Metadata = {
   description: "Books, boilerplates, and tools from AgileCoder — real products from a working software studio.",
 }
 
-export default async function StorePage() {
+export default async function StorePage({
+  searchParams,
+}: {
+  searchParams: Promise<{ category?: string }>
+}) {
+  const { category } = await searchParams
   const gumroadProducts = await getGumroadProducts()
 
   const products: StoreProduct[] = [
@@ -55,7 +60,7 @@ export default async function StorePage() {
         </div>
       </div>
 
-      <StoreClient products={products} />
+      <StoreClient products={products} initialCategory={category as "code" | "book" | "merch" | undefined} />
     </div>
   )
 }
