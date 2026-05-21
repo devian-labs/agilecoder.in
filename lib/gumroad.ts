@@ -19,8 +19,7 @@ export async function getGumroadProducts(): Promise<GumroadProduct[]> {
   if (!token) return []
 
   try {
-    const res = await fetch("https://api.gumroad.com/v2/products", {
-      headers: { Authorization: `Bearer ${token}` },
+    const res = await fetch(`https://api.gumroad.com/v2/products?access_token=${token}`, {
       next: { revalidate: 3600 },
     })
     if (!res.ok) return []

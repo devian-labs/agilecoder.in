@@ -1,7 +1,6 @@
 import { getPublishedPosts } from "@/lib/firestore/posts-crud"
-import { books } from "@/data/books"
+import { getGumroadProducts } from "@/lib/gumroad"
 import { FEATURED_VIDEOS } from "@/data/videos"
-import { publishedBoilerplates, upcomingBoilerplates } from "@/data/boilerplates"
 import Link from "next/link"
 import { formatDate } from "@/utils/formatDate"
 import {
@@ -60,8 +59,11 @@ const OFFERINGS = [
 ]
 
 export default async function HomePage() {
-  const recent = await getPublishedPosts({ limitN: 3 }).catch(() => [])
-  const featuredBook = books.find((b) => b.featured)
+  const [recent, gumroadProducts] = await Promise.all([
+    getPublishedPosts({ limitN: 3 }).catch(() => []),
+    getGumroadProducts(),
+  ])
+  const latestBoilerplates = gumroadProducts.slice(0, 3)
 
   return (
     <div className="min-h-screen bg-[#0a0a0f] text-white">
@@ -197,8 +199,8 @@ export default async function HomePage() {
                   <img src={video.thumbnail} alt={video.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 flex items-center justify-center bg-zinc-900/40 group-hover:bg-zinc-900/20 transition-colors">
-                    <div className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center group-hover:bg-white/20 transition-colors">
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-12 h-12 rounded-full bg-black/30 backdrop-blur-sm flex items-center justify-center group-hover:bg-black/50 transition-colors">
                       <Play className="h-5 w-5 text-white ml-0.5" />
                     </div>
                   </div>
@@ -271,144 +273,64 @@ export default async function HomePage() {
         </section>
       )}
 
-      {/* ── Featured Book ── */}
-      {featuredBook && (
-        <section className="border-t border-zinc-800/60 py-20 relative overflow-hidden">
-          {/* Ambient glow */}
-          <div className="absolute w-[500px] h-[500px] rounded-full bg-amber-500/5 blur-[120px] top-0 left-1/4 pointer-events-none" />
-
-          <div className="relative max-w-6xl mx-auto px-6">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-semibold tracking-widest uppercase border border-amber-500/25 text-amber-400 bg-amber-500/[0.07] mb-10">
-              Featured Book
-            </div>
-
-            <div className="grid md:grid-cols-[auto_1fr] gap-14 items-start">
-
-              {/* Cover with glow */}
-              <div className="flex justify-center md:justify-start shrink-0">
-                <div className="relative">
-                  <div className="absolute inset-0 rounded-xl bg-amber-500/20 blur-2xl scale-90 translate-y-4" />
-                  <div className="relative w-44 md:w-52 aspect-[2/3] rounded-xl overflow-hidden shadow-2xl shadow-black/60 border border-zinc-700/60">
-                    <img src={featuredBook.coverImage} alt={featuredBook.title}
-                      className="w-full h-full object-cover" />
-                  </div>
-                </div>
-              </div>
-
-              {/* Details */}
-              <div className="pt-1">
-                <div className="flex items-center gap-2 mb-4">
-                  <span className="inline-flex items-center gap-1.5 text-xs px-2.5 py-1 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/20 font-medium">
-                    📖 Available on Kindle
-                  </span>
-                </div>
-
-                <h2 className="text-3xl lg:text-4xl font-bold text-white mb-2 leading-tight">{featuredBook.title}</h2>
-                <p className="text-sm text-zinc-500 mb-5">by Smruti R. Badatya</p>
-                <p className="text-zinc-400 leading-relaxed mb-8 max-w-lg">{featuredBook.description}</p>
-
-                {/* What's inside */}
-                <div className="mb-8">
-                  <p className="text-xs font-semibold uppercase tracking-widest text-zinc-600 mb-4">What&apos;s inside</p>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                    {[
-                      "Building with GPT-4, Claude & Gemini APIs",
-                      "Prompt engineering for production systems",
-                      "Working with open-source models",
-                      "AI-assisted development workflows",
-                      "Evaluating and testing LLM outputs",
-                      "Mindset shift for the AI era",
-                    ].map((topic) => (
-                      <div key={topic} className="flex items-start gap-2.5 text-sm text-zinc-400">
-                        <span className="text-amber-500 mt-0.5 shrink-0">✦</span>
-                        {topic}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="flex flex-wrap gap-3">
-                  {featuredBook.links.map((link) => (
-                    <a key={link.label} href={link.url} target="_blank" rel="noopener noreferrer"
-                      className={`inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold transition-all duration-300 ${
-                        link.primary
-                          ? "border border-amber-500/35 text-amber-400 bg-amber-500/[0.08] hover:border-amber-400/65 hover:bg-amber-500/[0.14] hover:shadow-[0_0_24px_rgba(245,158,11,0.15)]"
-                          : "border border-zinc-700 text-zinc-300 hover:bg-zinc-800"
-                      }`}>
-                      {link.label} <ExternalLink className="h-3.5 w-3.5 opacity-70" />
-                    </a>
-                  ))}
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </section>
-      )}
-
       {/* ── Boilerplates ── */}
       <section className="border-t border-zinc-800/60 py-20">
         <div className="max-w-6xl mx-auto px-6">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-semibold tracking-widest uppercase border border-emerald-500/25 text-emerald-400 bg-emerald-500/[0.07] mb-6">
             Build by Devian Labs
           </div>
-          <div className="mb-10">
-            <h2 className="text-3xl font-bold text-white mb-3 leading-snug">
-              Production-ready scaffolds for AI-assisted development.
-            </h2>
-            <p className="text-zinc-400 leading-relaxed max-w-2xl">
-              Boilerplates built so AI agents can extend them without breaking them.
-              Opinionated folder structures, typed APIs, and design patterns that hold up under iteration.
-            </p>
+          <div className="flex items-end justify-between mb-10">
+            <div>
+              <h2 className="text-3xl font-bold text-white mb-3 leading-snug">
+                Production-ready scaffolds for AI-assisted development.
+              </h2>
+              <p className="text-zinc-400 leading-relaxed max-w-2xl">
+                Boilerplates built so AI agents can extend them without breaking them.
+                Opinionated folder structures, typed APIs, and design patterns that hold up under iteration.
+              </p>
+            </div>
+            <Link href="/store" className="text-sm text-zinc-400 hover:text-white flex items-center gap-1 transition-colors shrink-0 ml-6">
+              View all <ArrowRight className="h-4 w-4" />
+            </Link>
           </div>
 
-          {/* Published */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
-            {publishedBoilerplates.map((bp) => (
-              <a key={bp.title} href={bp.url} target="_blank" rel="noopener noreferrer"
-                className="group rounded-2xl border border-emerald-500/20 bg-zinc-900/60 p-5 hover:border-emerald-500/40 hover:bg-zinc-800/60 transition-all duration-300">
-                <div className="flex items-start justify-between mb-3">
-                  <span className="text-xs px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 font-medium border border-emerald-500/20">
-                    Available now
-                  </span>
-                  <ExternalLink className="h-4 w-4 text-zinc-600 group-hover:text-emerald-400 transition-colors" />
-                </div>
-                <h3 className="text-sm font-bold text-white mb-2 group-hover:text-emerald-300 transition-colors leading-snug">
-                  {bp.title}
-                </h3>
-                <p className="text-xs text-zinc-500 leading-relaxed mb-3">{bp.description}</p>
-                <div className="flex flex-wrap gap-1">
-                  {bp.stack.map((s) => (
-                    <span key={s} className="text-[10px] px-2 py-0.5 rounded-full bg-zinc-800 text-zinc-400 border border-zinc-700">{s}</span>
-                  ))}
-                </div>
-              </a>
-            ))}
-
-            {/* Upcoming previews - show first 2 */}
-            {upcomingBoilerplates.slice(0, 2).map((bp) => (
-              <div key={bp.title}
-                className="rounded-2xl border border-zinc-800 bg-zinc-900/40 p-5 opacity-60">
-                <div className="flex items-start justify-between mb-3">
-                  <span className="text-xs px-2 py-0.5 rounded-full bg-zinc-800 text-zinc-500 font-medium border border-zinc-700">
-                    Coming soon
-                  </span>
-                </div>
-                <h3 className="text-sm font-bold text-zinc-400 mb-2 leading-snug">{bp.title}</h3>
-                <p className="text-xs text-zinc-600 leading-relaxed mb-3">{bp.description}</p>
-                <div className="flex flex-wrap gap-1">
-                  {bp.stack.map((s) => (
-                    <span key={s} className="text-[10px] px-2 py-0.5 rounded-full bg-zinc-900 text-zinc-600 border border-zinc-800">{s}</span>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <a href="https://devianlabs.gumroad.com" target="_blank" rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-emerald-400 hover:text-emerald-300 transition-colors">
-            Browse all on BUILD by Devian Labs <ArrowRight className="h-4 w-4" />
-          </a>
+          {latestBoilerplates.length > 0 ? (
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-5">
+              {latestBoilerplates.map((product) => (
+                <a key={product.id} href={product.short_url} target="_blank" rel="noopener noreferrer"
+                  className="group rounded-2xl border border-zinc-800 bg-zinc-900 hover:border-emerald-500/30 transition-all duration-300 overflow-hidden flex flex-col">
+                  <div className="aspect-square bg-zinc-800 overflow-hidden relative">
+                    {product.thumbnail_url ? (
+                      <img src={product.thumbnail_url} alt={product.name}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center">
+                        <Code2 className="h-10 w-10 text-zinc-700" />
+                      </div>
+                    )}
+                    <div className="absolute top-3 right-3">
+                      <span className="px-2.5 py-1 rounded-full bg-black/80 text-white text-xs font-bold backdrop-blur-sm">
+                        {product.price === 0 ? "Free" : product.formatted_price}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="p-4 flex flex-col gap-2">
+                    <h3 className="text-sm font-bold text-white leading-snug line-clamp-2">
+                      {product.name}
+                    </h3>
+                    <span className="text-[11px] text-zinc-500 group-hover:text-emerald-400 flex items-center gap-1 transition-colors ml-auto">
+                      Get on Gumroad <ExternalLink className="h-2.5 w-2.5" />
+                    </span>
+                  </div>
+                </a>
+              ))}
+            </div>
+          ) : (
+            <div className="rounded-2xl border border-dashed border-zinc-800 p-10 text-center text-zinc-600">
+              <Code2 className="h-8 w-8 mx-auto mb-3 opacity-30" />
+              <p className="text-sm">Boilerplates coming soon.</p>
+            </div>
+          )}
         </div>
       </section>
 
