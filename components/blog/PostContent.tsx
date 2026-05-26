@@ -58,9 +58,14 @@ function sanitize(html: string) {
   })
 }
 
+const EXPAND_THRESHOLD = 5
+
 function CodeBlock({ code, lang }: { code: string; lang: string }) {
   const [copied, setCopied] = useState(false)
   const [expanded, setExpanded] = useState(false)
+
+  const lineCount = code.trim().split('\n').length
+  const collapsible = lineCount > EXPAND_THRESHOLD
 
   function copy() {
     navigator.clipboard.writeText(code.trim())
@@ -85,21 +90,23 @@ function CodeBlock({ code, lang }: { code: string; lang: string }) {
               : <><Copy className="h-3 w-3" /> Copy</>
             }
           </button>
-          <button
-            onClick={() => setExpanded((e) => !e)}
-            className="flex items-center gap-1 px-2.5 py-1 rounded-md text-xs text-zinc-400 hover:text-white hover:bg-zinc-700/60 transition-colors"
-          >
-            {expanded
-              ? <><ChevronUp className="h-3 w-3" /> Collapse</>
-              : <><ChevronDown className="h-3 w-3" /> Expand</>
-            }
-          </button>
+          {collapsible && (
+            <button
+              onClick={() => setExpanded((e) => !e)}
+              className="flex items-center gap-1 px-2.5 py-1 rounded-md text-xs text-zinc-400 hover:text-white hover:bg-zinc-700/60 transition-colors"
+            >
+              {expanded
+                ? <><ChevronUp className="h-3 w-3" /> Collapse</>
+                : <><ChevronDown className="h-3 w-3" /> Expand</>
+              }
+            </button>
+          )}
         </div>
       </div>
 
       {/* Code body */}
       <div className="relative">
-        <div style={{ maxHeight: expanded ? undefined : COLLAPSED_HEIGHT, overflow: "auto" }}>
+        <div style={{ maxHeight: collapsible && !expanded ? COLLAPSED_HEIGHT : undefined, overflow: "auto" }}>
           <SyntaxHighlighter
             language={lang || "text"}
             style={vscDarkPlus}
@@ -118,7 +125,7 @@ function CodeBlock({ code, lang }: { code: string; lang: string }) {
         </div>
 
         {/* Fade + expand hint when collapsed */}
-        {!expanded && (
+        {collapsible && !expanded && (
           <div
             className="absolute bottom-0 inset-x-0 h-14 bg-gradient-to-t from-[#0d1117] to-transparent flex items-end justify-center pb-2 cursor-pointer"
             onClick={() => setExpanded(true)}
@@ -137,16 +144,20 @@ export default function PostContent({ html }: Props) {
   const parts = splitParts(html)
 
   return (
-    <div className="prose prose-lg prose-invert max-w-none
+    <div className="prose prose-invert max-w-none
       prose-headings:text-white prose-headings:font-bold
-      prose-p:text-zinc-300 prose-p:leading-relaxed
+      prose-h1:text-3xl prose-h1:mt-8 prose-h1:mb-2
+      prose-h2:text-2xl prose-h2:mt-6 prose-h2:mb-1
+      prose-h3:text-xl prose-h3:mt-4 prose-h3:mb-1
+      prose-h4:text-lg prose-h4:mt-3 prose-h4:mb-0
+      prose-p:text-zinc-300 prose-p:leading-relaxed prose-p:my-3
       prose-a:text-blue-400 prose-a:no-underline hover:prose-a:underline
       prose-strong:text-white prose-em:text-zinc-300
       prose-code:text-blue-300 prose-code:bg-zinc-800 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:font-mono prose-code:text-sm prose-code:before:content-none prose-code:after:content-none
       prose-blockquote:border-l-blue-500 prose-blockquote:text-zinc-400 prose-blockquote:bg-zinc-900 prose-blockquote:rounded-r-xl prose-blockquote:py-2 prose-blockquote:pr-4
       prose-img:rounded-xl prose-img:border prose-img:border-zinc-800
       prose-hr:border-zinc-800
-      prose-li:text-zinc-300
+      prose-ul:my-2 prose-ol:my-2 prose-li:my-0.5 prose-li:text-zinc-300
       prose-th:text-white prose-td:text-zinc-300
       prose-mark:bg-yellow-400/20 prose-mark:text-yellow-200"
     >

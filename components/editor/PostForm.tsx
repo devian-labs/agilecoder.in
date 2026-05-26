@@ -145,7 +145,7 @@ export function PostForm({ initialData, mode }: Props) {
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto px-6 py-8 grid grid-cols-1 xl:grid-cols-[1fr_320px] gap-8">
+      <div className="max-w-7xl mx-auto px-6 py-8 grid grid-cols-1 xl:grid-cols-[1fr_320px] gap-8">
         {/* Main editor */}
         <div className="space-y-4">
           {/* Title */}
@@ -174,6 +174,7 @@ export function PostForm({ initialData, mode }: Props) {
             content={form.content}
             onChange={(html) => set("content", html)}
             placeholder="Start writing your post..."
+            stickyTop={61}
           />
 
           {/* Code widget - full-width below the editor */}

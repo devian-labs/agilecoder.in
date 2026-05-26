@@ -1,5 +1,5 @@
 "use client"
-import { useEditor, EditorContent } from "@tiptap/react"
+import { useEditor, EditorContent, NodeViewWrapper, NodeViewContent, ReactNodeViewRenderer } from "@tiptap/react"
 import { toast } from "sonner"
 import StarterKit from "@tiptap/starter-kit"
 import Image from "@tiptap/extension-image"
@@ -22,10 +22,55 @@ import {
 
 const lowlight = createLowlight(common)
 
+const LANGUAGES = [
+  { value: "", label: "plain text" },
+  { value: "bash", label: "bash" },
+  { value: "javascript", label: "javascript" },
+  { value: "typescript", label: "typescript" },
+  { value: "python", label: "python" },
+  { value: "html", label: "html" },
+  { value: "css", label: "css" },
+  { value: "json", label: "json" },
+  { value: "yaml", label: "yaml" },
+  { value: "sql", label: "sql" },
+  { value: "rust", label: "rust" },
+  { value: "go", label: "go" },
+]
+
+function CodeBlockView({ node, updateAttributes }: { node: any; updateAttributes: (attrs: Record<string, any>) => void }) {
+  return (
+    <NodeViewWrapper className="my-4 rounded-xl overflow-hidden border border-zinc-200 not-prose">
+      <div className="flex items-center justify-between px-3 py-1.5 bg-zinc-100 border-b border-zinc-200">
+        <select
+          value={node.attrs.language ?? ""}
+          onChange={(e) => updateAttributes({ language: e.target.value })}
+          contentEditable={false}
+          className="text-xs px-2 py-0.5 rounded-md border border-zinc-300 bg-white text-zinc-700 focus:outline-none focus:ring-1 focus:ring-blue-400 cursor-pointer"
+        >
+          {LANGUAGES.map((l) => (
+            <option key={l.value} value={l.value}>{l.label}</option>
+          ))}
+        </select>
+      </div>
+      <NodeViewContent
+        as="code"
+        className="block w-full p-4 bg-zinc-950 text-zinc-100 font-mono text-sm leading-relaxed whitespace-pre outline-none"
+      />
+    </NodeViewWrapper>
+  )
+}
+
+const CodeBlockExtension = CodeBlockLowlight.configure({ lowlight }).extend({
+  addNodeView() {
+    return ReactNodeViewRenderer(CodeBlockView)
+  },
+})
+
 interface Props {
   content: string
   onChange: (html: string) => void
   placeholder?: string
+  stickyTop?: number
 }
 
 function ToolBtn({ onClick, active, title, children }: {
@@ -51,7 +96,7 @@ function Divider() {
   return <div className="w-px h-5 bg-zinc-200 mx-1" />
 }
 
-export function RichEditor({ content, onChange, placeholder }: Props) {
+export function RichEditor({ content, onChange, placeholder, stickyTop = 0 }: Props) {
   const fileRef = useRef<HTMLInputElement>(null)
 
   const editor = useEditor({
@@ -63,7 +108,7 @@ export function RichEditor({ content, onChange, placeholder }: Props) {
       Link.configure({ openOnClick: false, autolink: true }),
       Image.configure({ inline: false, allowBase64: false }),
       Youtube.configure({ controls: true }),
-      CodeBlockLowlight.configure({ lowlight }),
+      CodeBlockExtension,
       Placeholder.configure({ placeholder: placeholder ?? "Start writing your post..." }),
       CharacterCount,
     ],
@@ -116,9 +161,9 @@ export function RichEditor({ content, onChange, placeholder }: Props) {
   const readTime = Math.max(1, Math.ceil(wordCount / 200))
 
   return (
-    <div className="border border-zinc-200 rounded-2xl overflow-hidden bg-white flex flex-col">
+    <div className="border border-zinc-200 rounded-2xl bg-white flex flex-col">
       {/* Toolbar */}
-      <div className="flex flex-wrap items-center gap-0.5 px-3 py-2 border-b border-zinc-100 bg-zinc-50/80 sticky top-0 z-10">
+      <div className="flex flex-wrap items-center gap-0.5 px-3 py-2 border-b rounded-lg border-zinc-100 bg-white sticky z-10" style={{ top: stickyTop }}>
         <ToolBtn onClick={() => editor.chain().focus().toggleBold().run()} active={editor.isActive("bold")} title="Bold">
           <Bold className="h-4 w-4" />
         </ToolBtn>
