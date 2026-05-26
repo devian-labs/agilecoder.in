@@ -12,6 +12,13 @@ html {
   @apply rounded-lg;
 }
 
+.ProseMirror img {
+  max-width: 100% !important;
+  height: auto !important;
+  display: block;
+  @apply rounded-lg my-4;
+}
+
 .ProseMirror h1 {
   @apply text-4xl font-bold leading-tight mt-6 mb-2;
 }
