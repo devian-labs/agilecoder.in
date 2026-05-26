@@ -3,19 +3,20 @@
 import { useState, useMemo } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
-import { Search, Clock, Eye, ChevronDown, X } from "lucide-react"
+import { Search, Clock, ChevronDown, X } from "lucide-react"
 import type { Post } from "@/lib/firestore/posts-crud"
 import type { Category } from "@/lib/firestore/categories"
 import { formatDate } from "@/utils/formatDate"
+import { CategoryIcon } from "@/components/CategoryIcon"
 
 const PAGE_SIZE = 12
 
 type SortKey = "newest" | "oldest" | "popular"
 
 const DIFFICULTY_COLORS: Record<string, string> = {
-  beginner: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20",
-  intermediate: "bg-amber-500/10 text-amber-400 border-amber-500/20",
-  advanced: "bg-red-500/10 text-red-400 border-red-500/20",
+  beginner: "bg-emerald-600 text-white",
+  intermediate: "bg-amber-500 text-white",
+  advanced: "bg-red-600 text-white",
 }
 
 interface Props {
@@ -95,13 +96,13 @@ export default function ExploreClient({ posts, categories, initialCategory }: Pr
           <button
             key={cat.slug}
             onClick={() => selectCategory(cat.slug)}
-            className={`px-4 py-2 rounded-xl text-sm font-medium transition-all ${
+            className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-medium transition-all ${
               category === cat.slug
                 ? "bg-cyan-500/20 border border-cyan-500/30 text-cyan-400"
                 : "bg-zinc-900 border border-zinc-800 text-zinc-400 hover:text-white hover:border-zinc-700"
             }`}
           >
-            {cat.icon} {cat.name}
+            <CategoryIcon icon={cat.icon ?? ""} color={category === cat.slug ? cat.color : undefined} size={16} />{cat.name}
           </button>
         ))}
       </div>
@@ -160,15 +161,15 @@ export default function ExploreClient({ posts, categories, initialCategory }: Pr
                 </div>
               )}
               <div className="absolute top-4 left-4">
-                <span className="px-3 py-1 rounded-full bg-violet-500/20 border border-violet-500/30 text-violet-300 text-xs font-semibold">Featured</span>
+                <span className="px-3 py-1 rounded-full bg-violet-600 text-white text-xs font-bold tracking-wide shadow-md">Featured</span>
               </div>
             </div>
             <div className="p-8 flex flex-col justify-center">
               {featured.category && (() => {
                 const cat = categories.find((c) => c.slug === featured.category)
                 return cat ? (
-                  <span className="text-blue-400 text-xs font-semibold uppercase tracking-widest mb-3">
-                    {cat.icon} {cat.name}
+                  <span className="text-blue-400 text-xs font-semibold uppercase tracking-widest mb-3 flex items-center gap-1">
+                    <CategoryIcon icon={cat.icon ?? ""} color={cat.color} size={13} />{cat.name}
                   </span>
                 ) : null
               })()}
@@ -179,7 +180,6 @@ export default function ExploreClient({ posts, categories, initialCategory }: Pr
               <div className="flex items-center gap-4 text-xs text-zinc-500">
                 <span>{formatDate(featured.date)}</span>
                 {featured.readingTime && <span className="flex items-center gap-1"><Clock className="h-3 w-3" />{featured.readingTime} min</span>}
-                <span className="flex items-center gap-1"><Eye className="h-3 w-3" />{featured.views.toLocaleString()}</span>
               </div>
             </div>
           </div>
@@ -220,15 +220,15 @@ export default function ExploreClient({ posts, categories, initialCategory }: Pr
                       </div>
                     )}
                     {post.difficulty && (
-                      <span className={`absolute top-3 right-3 px-2 py-0.5 rounded-full text-[10px] font-semibold border ${DIFFICULTY_COLORS[post.difficulty]}`}>
+                      <span className={`absolute top-3 right-3 px-2 py-0.5 rounded-full text-[10px] font-bold shadow ${DIFFICULTY_COLORS[post.difficulty]}`}>
                         {post.difficulty}
                       </span>
                     )}
                   </div>
                   <div className="p-5 flex flex-col flex-1">
                     {cat && (
-                      <span className="text-xs font-semibold uppercase tracking-widest mb-2" style={{ color: cat.color }}>
-                        {cat.icon} {cat.name}
+                      <span className="text-xs font-semibold uppercase tracking-widest mb-2 flex items-center gap-1" style={{ color: cat.color }}>
+                        <CategoryIcon icon={cat.icon ?? ""} color={cat.color} size={13} />{cat.name}
                       </span>
                     )}
                     <h3 className="text-base font-bold text-white mb-2 leading-snug group-hover:text-violet-300 transition-colors line-clamp-2">
@@ -240,7 +240,6 @@ export default function ExploreClient({ posts, categories, initialCategory }: Pr
                       {post.readingTime && (
                         <span className="flex items-center gap-1"><Clock className="h-3 w-3" />{post.readingTime}m</span>
                       )}
-                      <span className="flex items-center gap-1 ml-auto"><Eye className="h-3 w-3" />{post.views.toLocaleString()}</span>
                     </div>
                   </div>
                 </Link>

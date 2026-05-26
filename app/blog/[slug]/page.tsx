@@ -5,13 +5,13 @@ import { Metadata } from "next"
 import Link from "next/link"
 import { ArrowLeft, Clock, Calendar, User, Eye } from "lucide-react"
 import { formatDate } from "@/utils/formatDate"
-import { ViewCounter } from "@/components/blog/ViewCounter"
 import { LikeButton } from "@/components/blog/LikeButton"
 import { Comments } from "@/components/blog/Comments"
 import { NewsletterStrip } from "@/components/blog/NewsletterStrip"
 import { ShareButton } from "@/components/ShareButton"
 import PostContent from "@/components/blog/PostContent"
 import { CodeWidget } from "@/components/blog/CodeWidget"
+import { CategoryIcon } from "@/components/CategoryIcon"
 
 export const revalidate = 3600
 
@@ -61,8 +61,9 @@ export default async function BlogPostPage({ params }: Params) {
           {cat && (
             <>
               <span>/</span>
-              <Link href={`/blog?category=${cat.slug}`} className="hover:text-white transition-colors" style={{ color: cat.color }}>
-                {cat.icon} {cat.name}
+              <Link href={`/blog?category=${cat.slug}`} className="hover:text-white transition-colors flex items-center gap-1" style={{ color: cat.color }}>
+                <CategoryIcon icon={cat.icon ?? ""} color={cat.color} size={13} />
+                {cat.name}
               </Link>
             </>
           )}
@@ -95,7 +96,6 @@ export default async function BlogPostPage({ params }: Params) {
                 <Clock className="h-4 w-4" /> {post.readingTime} min read
               </div>
             )}
-            <ViewCounter slug={post.slug} />
             <div className="ml-auto flex items-center gap-3">
               <LikeButton slug={post.slug} />
               <ShareButton title={post.title} />
@@ -168,7 +168,7 @@ export default async function BlogPostPage({ params }: Params) {
                         <img src={p.coverImage} alt={p.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
                       </div>
                     )}
-                    {relCat && <span className="text-xs font-semibold" style={{ color: relCat.color }}>{relCat.icon} {relCat.name}</span>}
+                    {relCat && <span className="text-xs font-semibold flex items-center gap-1" style={{ color: relCat.color }}><CategoryIcon icon={relCat.icon ?? ""} color={relCat.color} size={12} />{relCat.name}</span>}
                     <p className="text-sm font-semibold text-white mt-1 leading-snug group-hover:text-violet-300 transition-colors line-clamp-2">{p.title}</p>
                   </Link>
                 )

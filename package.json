@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@iconify/json": "^2.2.479",
+    "@iconify/react": "^6.0.2",
     "@radix-ui/react-slot": "^1.2.4",
     "@tailwindcss/typography": "latest",
     "@tiptap/extension-character-count": "^3.23.5",
