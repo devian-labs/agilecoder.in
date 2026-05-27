@@ -57,6 +57,9 @@ export default function Footer() {
               <li>
                 <Link href="/about" className="text-sm text-zinc-400 hover:text-white transition-colors">About</Link>
               </li>
+              <li>
+                <Link href="/contact" className="text-sm text-zinc-400 hover:text-white transition-colors">Contact</Link>
+              </li>
             </ul>
           </div>
 
@@ -96,7 +99,7 @@ export default function Footer() {
                 <Mail className="h-4 w-4" />
               </a>
             </div>
-            <p className="text-xs text-zinc-600">hello@devianlabs.com</p>
+            <Link href="/contact" className="text-xs text-zinc-500 hover:text-zinc-300 transition-colors">hello@devianlabs.com</Link>
           </div>
 
         </div>
