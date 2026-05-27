@@ -49,8 +49,39 @@ export default async function BlogPostPage({ params }: Params) {
   ])
   const cat = categories.find((c) => c.slug === post.category)
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": post.title,
+    "description": post.excerpt ?? "",
+    "image": post.coverImage ?? "https://www.agilecoder.in/default-og.png",
+    "url": `https://www.agilecoder.in/blog/${post.slug}`,
+    "datePublished": post.date,
+    "dateModified": post.date,
+    "author": {
+      "@type": "Person",
+      "name": post.author ?? "Smruti Ranjan",
+      "url": "https://www.agilecoder.in/about"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "AgileCoder",
+      "url": "https://www.agilecoder.in",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.agilecoder.in/agilecoder-dark.png"
+      }
+    },
+    "keywords": post.tags?.join(", ") ?? "",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `https://www.agilecoder.in/blog/${post.slug}`
+    }
+  }
+
   return (
     <div className="min-h-screen bg-[#0a0a0f]">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <div className="max-w-4xl mx-auto px-6 py-12">
 
         {/* Breadcrumb */}
