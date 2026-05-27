@@ -140,7 +140,7 @@ export function CodeWidgetEditor({ value, onChange }: Props) {
               step={40}
               value={height}
               onChange={(e) => update({ height: Number(e.target.value) })}
-              className="w-full px-3 py-2 text-sm rounded-lg border border-zinc-200 focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-400"
+              className="w-full px-3 py-2 text-sm text-zinc-900 bg-white rounded-lg border border-zinc-200 focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-400"
             />
           </div>
         </div>

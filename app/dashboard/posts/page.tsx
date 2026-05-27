@@ -105,7 +105,7 @@ export default function PostsPage() {
         <div className="relative flex-1 max-w-sm ml-auto">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-400" />
           <input type="text" placeholder="Search posts…" value={search} onChange={(e) => setSearch(e.target.value)}
-            className="w-full pl-9 pr-4 py-2 text-sm rounded-xl border border-zinc-200 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-400" />
+            className="w-full pl-9 pr-4 py-2 text-sm text-zinc-900 rounded-xl border border-zinc-200 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-400" />
         </div>
       </div>
 

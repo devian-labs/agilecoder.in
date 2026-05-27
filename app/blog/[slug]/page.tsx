@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const post = await getPostBySlug(slug)
   if (!post) return { title: "Not Found" }
   const url = `https://www.agilecoder.in/blog/${post.slug}`
-  const image = post.coverImage ?? "https://www.agilecoder.in/default-og.jpg"
+  const image = post.coverImage ?? "https://www.agilecoder.in/default-og.png"
   return {
     title: `${post.title} | AgileCoder`,
     description: post.excerpt,
