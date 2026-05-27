@@ -84,11 +84,10 @@ export default function ExploreClient({ posts, categories, initialCategory }: Pr
       <div className="flex items-center gap-2 flex-wrap mb-6">
         <button
           onClick={() => selectCategory("")}
-          className={`px-4 py-2 rounded-xl text-sm font-medium transition-all ${
-            !category
+          className={`px-4 py-2 rounded-xl text-sm font-medium transition-all ${!category
               ? "bg-cyan-500/20 border border-cyan-500/30 text-cyan-400"
               : "bg-zinc-900 border border-zinc-800 text-zinc-400 hover:text-white hover:border-zinc-700"
-          }`}
+            }`}
         >
           All posts
         </button>
@@ -96,11 +95,10 @@ export default function ExploreClient({ posts, categories, initialCategory }: Pr
           <button
             key={cat.slug}
             onClick={() => selectCategory(cat.slug)}
-            className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-medium transition-all ${
-              category === cat.slug
+            className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-medium transition-all ${category === cat.slug
                 ? "bg-cyan-500/20 border border-cyan-500/30 text-cyan-400"
                 : "bg-zinc-900 border border-zinc-800 text-zinc-400 hover:text-white hover:border-zinc-700"
-            }`}
+              }`}
           >
             <CategoryIcon icon={cat.icon ?? ""} color={category === cat.slug ? cat.color : undefined} size={16} />{cat.name}
           </button>
@@ -133,9 +131,8 @@ export default function ExploreClient({ posts, categories, initialCategory }: Pr
             <button
               key={s}
               onClick={() => { setSort(s); setPage(1) }}
-              className={`px-3 py-1.5 rounded-lg text-xs font-semibold capitalize transition-colors ${
-                sort === s ? "bg-zinc-700 text-white" : "text-zinc-500 hover:text-zinc-300"
-              }`}
+              className={`px-3 py-1.5 rounded-lg text-xs font-semibold capitalize transition-colors ${sort === s ? "bg-zinc-700 text-white" : "text-zinc-500 hover:text-zinc-300"
+                }`}
             >
               {s === "popular" ? "Popular" : s === "newest" ? "Newest" : "Oldest"}
             </button>

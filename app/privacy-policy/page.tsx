@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 
 const PrivacyPolicy = () => {
   return (
-    <div className="max-w-4xl mx-auto px-6 py-16 text-foreground">
+    <main className="max-w-4xl mx-auto px-6 py-16 text-foreground">
       <div>
         <BackButton />
       </div>
@@ -179,7 +179,7 @@ const PrivacyPolicy = () => {
           <strong>Last updated:</strong> October 19, 2025
         </p>
       </section>
-    </div>
+    </main>
   )
 }
 

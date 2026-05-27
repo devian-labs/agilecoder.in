@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-[#0a0a0f] text-white">
+    <main className="min-h-screen bg-[#0a0a0f] text-white">
       <div className="max-w-6xl mx-auto px-6 py-20">
 
         {/* Hero */}
@@ -154,6 +154,6 @@ export default function AboutPage() {
         </div>
 
       </div>
-    </div>
+    </main>
   )
 }

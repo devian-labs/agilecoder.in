@@ -2,7 +2,7 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { signOut } from "firebase/auth"
-import { auth } from "@/lib/firebase"
+import { auth } from "@/lib/firebase-auth"
 import {
   LayoutDashboard, FileText, MessageSquare, Users,
   ExternalLink, LogOut, Rss, Tag, Plus, BookOpen,

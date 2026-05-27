@@ -1,7 +1,7 @@
 "use client"
 import { useEffect, useState } from "react"
 import { onAuthStateChanged, signInWithPopup, signOut, User } from "firebase/auth"
-import { auth, googleProvider } from "@/lib/firebase"
+import { auth, googleProvider } from "@/lib/firebase-auth"
 import { Loader2, ShieldX } from "lucide-react"
 
 const ALLOWED_DOMAIN = "devianlabs.com"

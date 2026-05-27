@@ -66,7 +66,7 @@ export default async function HomePage() {
   const latestBoilerplates = gumroadProducts.slice(0, 3)
 
   return (
-    <div className="min-h-screen bg-[#0a0a0f] text-white">
+    <main className="min-h-screen bg-[#0a0a0f] text-white">
 
       {/* ── Hero ── */}
       <section className="relative overflow-hidden">
@@ -196,7 +196,7 @@ export default async function HomePage() {
               <a key={video.id} href={video.url} target="_blank" rel="noopener noreferrer"
                 className="group rounded-2xl border border-zinc-800 bg-zinc-900 hover:border-cyan-500/30 transition-all duration-300 overflow-hidden">
                 <div className="aspect-video bg-zinc-800 relative overflow-hidden">
-                  <img src={video.thumbnail} alt={video.title}
+                  <img src={video.thumbnail} alt={video.title} width={640} height={360}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 flex items-center justify-center">
@@ -247,7 +247,7 @@ export default async function HomePage() {
                   className="group rounded-2xl border border-zinc-800 bg-zinc-900 hover:border-violet-500/30 transition-all duration-300 overflow-hidden flex flex-col">
                   <div className="aspect-video bg-zinc-800 overflow-hidden">
                     {post.coverImage ? (
-                      <img src={post.coverImage} alt={post.title}
+                      <img src={post.coverImage} alt={post.title} width={640} height={360}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-zinc-700 to-zinc-800">
@@ -301,7 +301,7 @@ export default async function HomePage() {
                   className="group rounded-2xl border border-zinc-800 bg-zinc-900 hover:border-emerald-500/30 transition-all duration-300 overflow-hidden flex flex-col">
                   <div className="aspect-square bg-zinc-800 overflow-hidden relative">
                     {product.thumbnail_url ? (
-                      <img src={product.thumbnail_url} alt={product.name}
+                      <img src={product.thumbnail_url} alt={product.name} width={300} height={300}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center">
@@ -351,6 +351,6 @@ export default async function HomePage() {
         </div>
       </section>
 
-    </div>
+    </main>
   )
 }

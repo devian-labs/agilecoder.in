@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 
 const TermsOfService = () => {
   return (
-    <div className="max-w-3xl mx-auto px-5 py-10">
+    <main className="max-w-3xl mx-auto px-5 py-10">
       <BackButton />
 
       <h1 className="text-3xl font-bold mb-4 text-foreground">Terms and Conditions</h1>
@@ -131,7 +131,7 @@ const TermsOfService = () => {
           <strong>Last updated:</strong> October 19, 2025.
         </p>
       </div>
-    </div>
+    </main>
   )
 }
 

@@ -16,7 +16,7 @@ const socials = [
 
 export default function ContactPage() {
   return (
-    <div className="min-h-screen bg-[#0a0a0f] text-white">
+    <main className="min-h-screen bg-[#0a0a0f] text-white">
       <div className="max-w-6xl mx-auto px-6 py-20">
 
         <div className="max-w-xl">
@@ -68,6 +68,6 @@ export default function ContactPage() {
         </div>
 
       </div>
-    </div>
+    </main>
   )
 }

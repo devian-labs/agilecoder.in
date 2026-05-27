@@ -1,6 +1,7 @@
 'use client';
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -38,7 +39,7 @@ export default function Header() {
 
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3 group" onClick={() => setIsOpen(false)}>
-          <img className="rounded-full w-8 md:w-9" src="/agilecoder-dark.png" alt="Agile Coder Logo" />
+          <Image src="/agilecoder-dark.png" alt="Agile Coder Logo" width={36} height={36} className="rounded-full w-8 md:w-9" priority />
           <div className="flex flex-col leading-none">
             <span className="text-foreground text-base md:text-lg font-bold">AgileCoder</span>
             <span
